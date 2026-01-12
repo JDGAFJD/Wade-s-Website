@@ -1,2349 +1,1748 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Verity Praxis - Honest Principles, Executed. Strategy, operations, and marketing that drives measurable results.">
-    <title>Verity Praxis, LLC | Honest Principles, Executed.</title>
-    <style>
-        :root {
-            --electric-blue: #138DE9;
-            --deep-blue: #0E5AB9;
-            --charcoal: #303030;
-            --slate: #4C5562;
-            --silver: #C6C7CA;
-            --off-white: #F7F8FA;
-            --white: #FFFFFF;
-            --shadow-sm: 0 2px 8px rgba(19, 141, 233, 0.08);
-            --shadow-md: 0 4px 16px rgba(19, 141, 233, 0.12);
-            --shadow-lg: 0 8px 32px rgba(19, 141, 233, 0.16);
-            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--charcoal);
-            background: var(--white);
-            overflow-x: hidden;
-        }
-
-        /* Header */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--silver);
-            padding: 1rem 0;
-        }
-
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-            color: var(--charcoal);
-        }
-
-        .logo-img {
-            height: 40px;
-            width: auto;
-        }
-
-        .logo-fallback {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--electric-blue), var(--deep-blue));
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 1.25rem;
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--slate);
-            font-weight: 500;
-            transition: color var(--transition);
-            position: relative;
-        }
-
-        .nav-links a:hover,
-        .nav-links a:focus {
-            color: var(--electric-blue);
-            outline: none;
-        }
-
-        .nav-links a.active {
-            color: var(--electric-blue);
-        }
-
-        .nav-links a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--electric-blue);
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
-            border: none;
-            font-size: 1rem;
-            transition: all var(--transition);
-            position: relative;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--electric-blue), var(--deep-blue));
-            color: white;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .btn-primary:hover,
-        .btn-primary:focus {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-            outline: none;
-        }
-
-        .btn-primary:active {
-            transform: translateY(0);
-        }
-
-        .btn-primary:focus-visible {
-            outline: 3px solid rgba(19, 141, 233, 0.5);
-            outline-offset: 2px;
-        }
-
-        .btn-secondary {
-            background: white;
-            color: var(--electric-blue);
-            border: 2px solid var(--electric-blue);
-        }
-
-        .btn-secondary:hover,
-        .btn-secondary:focus {
-            background: var(--off-white);
-            transform: translateY(-2px);
-            outline: none;
-        }
-
-        .btn-secondary:focus-visible {
-            outline: 3px solid rgba(19, 141, 233, 0.5);
-            outline-offset: 2px;
-        }
-
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--charcoal);
-            cursor: pointer;
-        }
-
-        /* Hero */
-        .hero {
-            padding: 4rem 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--charcoal), var(--electric-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero .subheadline {
-            font-size: clamp(1.125rem, 2vw, 1.5rem);
-            color: var(--slate);
-            max-width: 800px;
-            margin: 0 auto 2.5rem;
-            line-height: 1.6;
-        }
-
-        .hero-ctas {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 3rem;
-        }
-
-        .trust-strip {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-            padding: 2rem;
-            background: var(--off-white);
-            border-radius: 12px;
-            margin-top: 2rem;
-        }
-
-        .trust-item {
-            text-align: center;
-        }
-
-        .trust-item-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--electric-blue);
-            display: block;
-        }
-
-        .trust-item-label {
-            font-size: 0.875rem;
-            color: var(--slate);
-            margin-top: 0.25rem;
-        }
-
-        .trust-note {
-            margin-top: 1.5rem;
-            font-size: 0.875rem;
-            color: var(--slate);
-            font-style: italic;
-        }
-
-        /* Sections */
-        section {
-            padding: 5rem 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-header h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
-            color: var(--charcoal);
-            margin-bottom: 1rem;
-        }
-
-        .section-header p {
-            font-size: 1.125rem;
-            color: var(--slate);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* PAS Section */
-        .pas-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .pain-block {
-            padding: 2.5rem;
-            background: var(--off-white);
-            border-radius: 12px;
-            border: 1px solid rgba(198, 199, 202, 0.3);
-            box-shadow: var(--shadow-sm);
-            position: relative;
-        }
-
-        /* Modern gradient accent line (replaces thick border) */
-        .pain-block::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(
-                180deg,
-                rgba(231, 76, 60, 0.9) 0%,
-                rgba(231, 76, 60, 0.7) 50%,
-                rgba(231, 76, 60, 0.9) 100%
-            );
-            border-radius: 12px 0 0 12px;
-            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease;
-            z-index: 0;
-        }
-
-        /* Enhanced accent line on hover */
-        .pain-block:hover::after {
-            width: 3px;
-            background: linear-gradient(
-                180deg,
-                rgba(231, 76, 60, 1) 0%,
-                rgba(231, 76, 60, 0.85) 50%,
-                rgba(231, 76, 60, 1) 100%
-            );
-        }
-
-        .pain-block-icon {
-            width: 64px;
-            height: 64px;
-            margin-bottom: 1.5rem;
-            opacity: 0.9;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
-        }
-
-        .pain-block:hover .pain-block-icon {
-            transform: translateY(-4px) scale(1.05);
-            opacity: 1;
-        }
-
-        .pain-block h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1.25rem;
-            color: var(--charcoal);
-            font-weight: 600;
-            line-height: 1.3;
-        }
-
-        .pain-block ul {
-            list-style: none;
-            padding-left: 0;
-            margin-bottom: 1.5rem;
-        }
-
-        .pain-block li {
-            padding: 0.75rem 0;
-            padding-left: 2.5rem;
-            color: var(--slate);
-            position: relative;
-            line-height: 1.6;
-            transition: color 0.2s ease;
-        }
-
-        /* Modern circular badge icon */
-        .pain-block li::before {
-            content: '×';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: rgba(231, 76, 60, 0.12);
-            color: #E74C3C;
-            font-weight: 700;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            line-height: 1;
-        }
-
-        /* Result paragraph styling */
-        .pain-block .result-text {
-            margin-top: 1.25rem;
-            padding-top: 1.25rem;
-            border-top: 1px solid rgba(198, 199, 202, 0.3);
-            color: var(--charcoal);
-            font-weight: 600;
-            font-size: 0.9375rem;
-            line-height: 1.6;
-        }
-
-        .solution-block {
-            padding: 3rem;
-            background: linear-gradient(135deg, rgba(19, 141, 233, 0.1), rgba(14, 90, 185, 0.1));
-            border-radius: 12px;
-            text-align: center;
-            border: 2px solid var(--electric-blue);
-        }
-
-        .solution-block h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--charcoal);
-        }
-
-        /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .service-card {
-            padding: 2rem;
-            background: white;
-            border-radius: 12px;
-            border: 1px solid var(--silver);
-            transition: all var(--transition);
-        }
-
-        .service-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--electric-blue);
-        }
-
-        .service-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-            color: var(--charcoal);
-        }
-
-        .service-card p {
-            color: var(--slate);
-            font-size: 0.9375rem;
-        }
-
-        /* Proof Cards */
-        .proof-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .proof-card {
-            padding: 2rem;
-            background: white;
-            border-radius: 12px;
-            box-shadow: var(--shadow-sm);
-            border-top: 4px solid var(--electric-blue);
-        }
-
-        .proof-card .metric {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--electric-blue);
-            margin-bottom: 0.5rem;
-        }
-
-        .proof-card .description {
-            color: var(--slate);
-            margin-bottom: 1rem;
-        }
-
-        .proof-card .method {
-            font-size: 0.875rem;
-            color: var(--slate);
-            font-style: italic;
-            padding-top: 1rem;
-            border-top: 1px solid var(--silver);
-        }
-
-        /* Work Cards */
-        .work-grid {
-            display: grid;
-            gap: 3rem;
-        }
-
-        .work-card {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            padding: 2rem;
-            background: white;
-            border-radius: 12px;
-            box-shadow: var(--shadow-sm);
-            align-items: center;
-        }
-
-        .work-card:nth-child(even) {
-            direction: rtl;
-        }
-
-        .work-card:nth-child(even) > * {
-            direction: ltr;
-        }
-
-        .work-content h3 {
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
-            color: var(--charcoal);
-        }
-
-        .work-content .problem,
-        .work-content .solution,
-        .work-content .outcome {
-            margin-bottom: 1.5rem;
-        }
-
-        .work-content strong {
-            color: var(--electric-blue);
-        }
-
-        .work-visual {
-            background: var(--off-white);
-            border-radius: 8px;
-            padding: 1rem;
-            min-height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Process Timeline */
-        .process-timeline {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            position: relative;
-            padding: 2rem 0;
-        }
-
-        .process-step {
-            text-align: center;
-            position: relative;
-        }
-
-        .process-step-number {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--electric-blue), var(--deep-blue));
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 0 auto 1rem;
-        }
-
-        .process-step h4 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-            color: var(--charcoal);
-        }
-
-        .process-step p {
-            color: var(--slate);
-            font-size: 0.9375rem;
-        }
-
-        .process-note {
-            text-align: center;
-            margin-top: 3rem;
-            padding: 1.5rem;
-            background: var(--off-white);
-            border-radius: 8px;
-            color: var(--slate);
-        }
-
-        /* Testimonials */
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .testimonial-card {
-            padding: 2rem;
-            background: white;
-            border-radius: 12px;
-            box-shadow: var(--shadow-sm);
-            border-left: 4px solid var(--electric-blue);
-        }
-
-        .testimonial-text {
-            color: var(--slate);
-            margin-bottom: 1.5rem;
-            font-style: italic;
-            line-height: 1.7;
-        }
-
-        .testimonial-author {
-            font-weight: 600;
-            color: var(--charcoal);
-        }
-
-        .testimonial-role {
-            font-size: 0.875rem;
-            color: var(--slate);
-        }
-
-        .logo-row {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-            padding: 3rem 0;
-            opacity: 0.6;
-        }
-
-        .logo-placeholder {
-            padding: 1rem 2rem;
-            background: var(--off-white);
-            border-radius: 8px;
-            color: var(--slate);
-            font-weight: 600;
-        }
-
-        .security-block {
-            padding: 2rem;
-            background: var(--off-white);
-            border-radius: 12px;
-            margin-top: 3rem;
-        }
-
-        .security-block h3 {
-            margin-bottom: 1rem;
-            color: var(--charcoal);
-        }
-
-        .security-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            list-style: none;
-        }
-
-        .security-list li {
-            padding: 0.75rem;
-            background: white;
-            border-radius: 8px;
-            color: var(--slate);
-        }
-
-        /* Packages */
-        .packages-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .package-card {
-            padding: 2.5rem;
-            background: white;
-            border-radius: 12px;
-            border: 2px solid var(--silver);
-            transition: all var(--transition);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .package-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--electric-blue);
-        }
-
-        .package-card.featured {
-            border-color: var(--electric-blue);
-            box-shadow: var(--shadow-md);
-        }
-
-        .package-header {
-            margin-bottom: 1.5rem;
-        }
-
-        .package-header h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--charcoal);
-        }
-
-        .package-price {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--electric-blue);
-        }
-
-        .package-features {
-            list-style: none;
-            flex-grow: 1;
-            margin-bottom: 2rem;
-        }
-
-        .package-features li {
-            padding: 0.75rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-            color: var(--slate);
-        }
-
-        .package-features li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--electric-blue);
-            font-weight: bold;
-        }
-
-        /* FAQ */
-        .faq-list {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            margin-bottom: 1rem;
-            border: 1px solid var(--silver);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .faq-question {
-            padding: 1.5rem;
-            background: var(--off-white);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            color: var(--charcoal);
-            transition: background var(--transition);
-            width: 100%;
-            text-align: left;
-            border: none;
-            font-size: 1rem;
-            font-family: inherit;
-        }
-
-        .faq-question:hover,
-        .faq-question:focus {
-            background: var(--silver);
-            outline: none;
-        }
-
-        .faq-question.active {
-            background: var(--electric-blue);
-            color: white;
-        }
-
-        .faq-answer {
-            padding: 0 1.5rem;
-            max-height: 0;
-            overflow: hidden;
-            transition: all var(--transition);
-            color: var(--slate);
-        }
-
-        .faq-answer.active {
-            padding: 1.5rem;
-            max-height: 500px;
-        }
-
-        .faq-toggle {
-            font-size: 1.5rem;
-            transition: transform var(--transition);
-            flex-shrink: 0;
-            margin-left: 1rem;
-        }
-
-        .faq-question.active .faq-toggle {
-            transform: rotate(180deg);
-        }
-
-        /* Contact Form */
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--charcoal);
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid var(--silver);
-            border-radius: 8px;
-            font-size: 1rem;
-            font-family: inherit;
-            transition: border-color var(--transition);
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--electric-blue);
-        }
-
-        .form-group input.error,
-        .form-group select.error,
-        .form-group textarea.error {
-            border-color: #E74C3C;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .form-error {
-            color: #E74C3C;
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-            display: none;
-        }
-
-        .form-error.active {
-            display: block;
-        }
-
-        .form-success {
-            display: none;
-            padding: 1.5rem;
-            background: #27AE60;
-            color: white;
-            border-radius: 8px;
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .form-success.active {
-            display: block;
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 1rem;
-        }
-
-        .btn-submit:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--charcoal);
-            color: var(--silver);
-            padding: 3rem 1.5rem;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h4 {
-            color: white;
-            margin-bottom: 1rem;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section a {
-            color: var(--silver);
-            text-decoration: none;
-            transition: color var(--transition);
-        }
-
-        .footer-section a:hover,
-        .footer-section a:focus {
-            color: white;
-            outline: none;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(198, 199, 202, 0.2);
-            font-size: 0.875rem;
-        }
-
-        /* Floating CTA (Mobile) */
-        .floating-cta {
-            position: fixed;
-            bottom: 1rem;
-            left: 1rem;
-            right: 1rem;
-            z-index: 999;
-            display: none;
-        }
-
-        .floating-cta .btn {
-            width: 100%;
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Premium Card Upgrades */
-        /* Enhanced card styling with premium animations, hover effects, and micro-interactions */
-        /* All styles preserve existing theme, colors, fonts, and layout */
-
-        /* Shared base styles for all card components */
-        .service-card,
-        .proof-card,
-        .work-card,
-        .testimonial-card,
-        .package-card,
-        .pain-block,
-        .solution-block,
-        .security-block,
-        .faq-item,
-        .logo-placeholder,
-        .security-list li {
-            position: relative;
-            overflow: hidden;
-            backface-visibility: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Sheen overlay - diagonal gradient sweep on hover */
-        .service-card::before,
-        .proof-card::before,
-        .work-card::before,
-        .testimonial-card::before,
-        .package-card::before,
-        .pain-block::before,
-        .solution-block::before,
-        .security-block::before,
-        .logo-placeholder::before,
-        .security-list li::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(19, 141, 233, 0.1),
-                transparent
-            );
-            transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* Enhanced hover effects for primary cards */
-        .service-card:hover,
-        .proof-card:hover,
-        .testimonial-card:hover,
-        .package-card:hover,
-        .pain-block:hover,
-        .solution-block:hover,
-        .security-block:hover,
-        .logo-placeholder:hover,
-        .security-list li:hover {
-            transform: translateY(-6px) scale(1.02);
-            box-shadow: 
-                0 8px 24px rgba(19, 141, 233, 0.15),
-                0 4px 12px rgba(19, 141, 233, 0.1),
-                0 0 0 1px rgba(19, 141, 233, 0.2);
-            will-change: transform;
-        }
-
-        /* Work card hover - preserve grid layout */
-        .work-card:hover {
-            transform: translateY(-6px) scale(1.01);
-            box-shadow: 
-                0 8px 24px rgba(19, 141, 233, 0.15),
-                0 4px 12px rgba(19, 141, 233, 0.1),
-                0 0 0 1px rgba(19, 141, 233, 0.2);
-            will-change: transform;
-        }
-
-        /* Sheen animation on hover */
-        .service-card:hover::before,
-        .proof-card:hover::before,
-        .work-card:hover::before,
-        .testimonial-card:hover::before,
-        .package-card:hover::before,
-        .pain-block:hover::before,
-        .solution-block:hover::before,
-        .security-block:hover::before,
-        .logo-placeholder:hover::before,
-        .security-list li:hover::before {
-            left: 100%;
-        }
-
-        /* Active state - press feedback */
-        .service-card:active,
-        .proof-card:active,
-        .work-card:active,
-        .testimonial-card:active,
-        .package-card:active,
-        .pain-block:active,
-        .solution-block:active,
-        .security-block:active,
-        .logo-placeholder:active,
-        .security-list li:active {
-            transform: translateY(-4px) scale(0.98);
-        }
-
-        /* Enhanced focus-visible states */
-        .service-card:focus-visible,
-        .proof-card:focus-visible,
-        .work-card:focus-visible,
-        .testimonial-card:focus-visible,
-        .package-card:focus-visible,
-        .pain-block:focus-visible,
-        .solution-block:focus-visible,
-        .security-block:focus-visible,
-        .logo-placeholder:focus-visible,
-        .security-list li:focus-visible {
-            outline: 3px solid rgba(19, 141, 233, 0.5);
-            outline-offset: 2px;
-            box-shadow: 
-                0 4px 16px rgba(19, 141, 233, 0.2),
-                0 0 0 1px rgba(19, 141, 233, 0.3);
-        }
-
-        /* Enhanced transitions for all cards */
-        .service-card,
-        .proof-card,
-        .work-card,
-        .testimonial-card,
-        .package-card,
-        .pain-block,
-        .solution-block,
-        .security-block,
-        .logo-placeholder,
-        .security-list li {
-            transition: 
-                transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Entrance animations with stagger for grid items */
-        .service-card,
-        .proof-card,
-        .testimonial-card,
-        .package-card {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: 
-                opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Stagger delays for service cards */
-        .service-card:nth-child(1) { transition-delay: 0.05s; }
-        .service-card:nth-child(2) { transition-delay: 0.1s; }
-        .service-card:nth-child(3) { transition-delay: 0.15s; }
-        .service-card:nth-child(4) { transition-delay: 0.2s; }
-        .service-card:nth-child(5) { transition-delay: 0.25s; }
-        .service-card:nth-child(6) { transition-delay: 0.3s; }
-        .service-card:nth-child(7) { transition-delay: 0.35s; }
-        .service-card:nth-child(8) { transition-delay: 0.4s; }
-        .service-card:nth-child(9) { transition-delay: 0.45s; }
-        .service-card:nth-child(10) { transition-delay: 0.5s; }
-        .service-card:nth-child(11) { transition-delay: 0.55s; }
-        .service-card:nth-child(12) { transition-delay: 0.6s; }
-        .service-card:nth-child(13) { transition-delay: 0.65s; }
-
-        /* Stagger delays for proof cards */
-        .proof-card:nth-child(1) { transition-delay: 0.1s; }
-        .proof-card:nth-child(2) { transition-delay: 0.2s; }
-        .proof-card:nth-child(3) { transition-delay: 0.3s; }
-        .proof-card:nth-child(4) { transition-delay: 0.4s; }
-
-        /* Stagger delays for testimonial cards */
-        .testimonial-card:nth-child(1) { transition-delay: 0.1s; }
-        .testimonial-card:nth-child(2) { transition-delay: 0.2s; }
-        .testimonial-card:nth-child(3) { transition-delay: 0.3s; }
-        .testimonial-card:nth-child(4) { transition-delay: 0.4s; }
-        .testimonial-card:nth-child(5) { transition-delay: 0.5s; }
-
-        /* Stagger delays for package cards */
-        .package-card:nth-child(1) { transition-delay: 0.1s; }
-        .package-card:nth-child(2) { transition-delay: 0.2s; }
-        .package-card:nth-child(3) { transition-delay: 0.3s; }
-
-        /* Visible state for entrance animations */
-        .service-card.visible,
-        .proof-card.visible,
-        .testimonial-card.visible,
-        .package-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Work cards - already have fade-in class, enhance it */
-        .work-card {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: 
-                opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .work-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .work-card:nth-child(1) { transition-delay: 0.1s; }
-        .work-card:nth-child(2) { transition-delay: 0.3s; }
-        .work-card:nth-child(3) { transition-delay: 0.5s; }
-
-        /* Enhanced package card featured state */
-        .package-card.featured {
-            box-shadow: 
-                0 6px 20px rgba(19, 141, 233, 0.15),
-                0 2px 8px rgba(19, 141, 233, 0.1);
-        }
-
-        .package-card.featured:hover {
-            box-shadow: 
-                0 12px 32px rgba(19, 141, 233, 0.2),
-                0 6px 16px rgba(19, 141, 233, 0.15),
-                0 0 0 2px rgba(19, 141, 233, 0.3);
-        }
-
-        /* FAQ item - special handling for accordion */
-        .faq-item {
-            transition: 
-                transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .faq-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 
-                0 4px 12px rgba(19, 141, 233, 0.1),
-                0 0 0 1px rgba(19, 141, 233, 0.15);
-        }
-
-        /* Ensure nested interactive elements remain accessible */
-        .service-card a,
-        .service-card button,
-        .proof-card a,
-        .proof-card button,
-        .work-card a,
-        .work-card button,
-        .testimonial-card a,
-        .testimonial-card button,
-        .package-card a,
-        .package-card button,
-        .pain-block a,
-        .pain-block button,
-        .solution-block a,
-        .solution-block button,
-        .security-block a,
-        .security-block button {
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Respect prefers-reduced-motion */
-        @media (prefers-reduced-motion: reduce) {
-            .service-card,
-            .proof-card,
-            .work-card,
-            .testimonial-card,
-            .package-card,
-            .pain-block,
-            .solution-block,
-            .security-block,
-            .faq-item,
-            .logo-placeholder,
-            .security-list li {
-                transition: none !important;
-                transform: none !important;
-                opacity: 1 !important;
-            }
-
-            .service-card::before,
-            .proof-card::before,
-            .work-card::before,
-            .testimonial-card::before,
-            .package-card::before,
-            .pain-block::before,
-            .solution-block::before,
-            .security-block::before,
-            .logo-placeholder::before,
-            .security-list li::before {
-                display: none !important;
-            }
-
-            /* Disable accent line animation but keep it visible */
-            .pain-block::after {
-                transition: none !important;
-                width: 2px !important;
-            }
-
-            .service-card:hover,
-            .proof-card:hover,
-            .work-card:hover,
-            .testimonial-card:hover,
-            .package-card:hover,
-            .pain-block:hover,
-            .solution-block:hover,
-            .security-block:hover,
-            .logo-placeholder:hover,
-            .security-list li:hover {
-                transform: none !important;
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .pas-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu-toggle {
-                display: block;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero-ctas {
-                flex-direction: column;
-            }
-
-            .hero-ctas .btn {
-                width: 100%;
-            }
-
-            .trust-strip {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-
-            section {
-                padding: 3rem 1.5rem;
-            }
-
-            .work-card {
-                grid-template-columns: 1fr;
-            }
-
-            .work-card:nth-child(even) {
-                direction: ltr;
-            }
-
-            .process-timeline {
-                grid-template-columns: 1fr;
-            }
-
-            .floating-cta {
-                display: block;
-            }
-
-            .packages-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .pas-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header-container {
-                padding: 0 1rem;
-            }
-
-            .hero {
-                padding: 2rem 1rem;
-            }
-
-            section {
-                padding: 2rem 1rem;
-            }
-
-            .pain-block-icon {
-                width: 56px;
-                height: 56px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verity Praxis | Premium Digital Consulting</title>
+  <meta name="description" content="Strategic digital consulting that transforms ambitious businesses through data-driven marketing, cutting-edge automation, and measurable growth.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ===== CSS Reset & Base ===== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      /* Light theme colors */
+      --background: #ffffff;
+      --foreground: #141414;
+      --muted: #f5f5f5;
+      --muted-foreground: #737373;
+      --border: #e5e5e5;
+      
+      /* Dark section colors */
+      --dark-bg: #0f0f0f;
+      --dark-bg-elevated: #1a1a1a;
+      --dark-foreground: #fafafa;
+      --dark-muted: #999999;
+      --dark-border: #2e2e2e;
+      
+      /* Brand accent */
+      --primary: #138DE9;
+      --primary-hover: #0e6fb8;
+      
+      /* Typography */
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      
+      /* Spacing */
+      --section-padding: 120px;
+      --container-max: 1200px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-serif);
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ===== Container ===== */
+    .container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===== Section Styles ===== */
+    .section {
+      padding: var(--section-padding) 0;
+    }
+
+    .section-dark {
+      background-color: var(--dark-bg);
+      color: var(--dark-foreground);
+    }
+
+    .section-dark-elevated {
+      background-color: var(--dark-bg-elevated);
+      color: var(--dark-foreground);
+    }
+
+    /* ===== Animated Elements ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Staggered animations */
+    .stagger-1 { transition-delay: 0.1s; }
+    .stagger-2 { transition-delay: 0.2s; }
+    .stagger-3 { transition-delay: 0.3s; }
+    .stagger-4 { transition-delay: 0.4s; }
+    .stagger-5 { transition-delay: 0.5s; }
+
+    /* ===== Animated Underline Link ===== */
+    .link-underline {
+      position: relative;
+      display: inline-block;
+    }
+
+    .link-underline::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: currentColor;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+
+    .link-underline:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    /* ===== Animated Button ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 32px;
+      font-size: 14px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border: 1px solid currentColor;
+      background: transparent;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--primary);
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      z-index: -1;
+    }
+
+    .btn:hover::before {
+      transform: translateX(0);
+    }
+
+    .btn:hover {
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .btn-arrow {
+      transition: transform 0.3s ease;
+    }
+
+    .btn:hover .btn-arrow {
+      transform: translateX(4px);
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+
+    .btn-primary::before {
+      background-color: var(--primary-hover);
+    }
+
+    /* ===== Divider with Label ===== */
+    .divider-label {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted-foreground);
+      margin-bottom: 48px;
+    }
+
+    .section-dark .divider-label {
+      color: var(--dark-muted);
+    }
+
+    .divider-label::before,
+    .divider-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background-color: currentColor;
+      opacity: 0.3;
+    }
+
+    /* ===== Header ===== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 24px 0;
+      background-color: rgba(15, 15, 15, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--dark-border);
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--dark-foreground);
+      letter-spacing: -0.02em;
+    }
+
+    .nav {
+      display: flex;
+      gap: 40px;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      color: var(--dark-muted);
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--dark-foreground);
+    }
+
+    .header-cta {
+      padding: 12px 24px;
+      font-size: 12px;
+    }
+
+    /* Mobile nav toggle */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background-color: var(--dark-foreground);
+      transition: transform 0.3s ease;
+    }
+
+    /* ===== Hero Section ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 100px;
+      background-color: var(--dark-bg);
+      color: var(--dark-foreground);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--primary);
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-size: clamp(48px, 6vw, 72px);
+      margin-bottom: 24px;
+      line-height: 1.1;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--dark-muted);
+      margin-bottom: 40px;
+      max-width: 500px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-image {
+      position: relative;
+      aspect-ratio: 4/5;
+      background-color: var(--dark-bg-elevated);
+      border: 1px solid var(--dark-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--dark-muted);
+      font-size: 14px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid var(--dark-border);
+    }
+
+    .hero-stat {
+      text-align: left;
+    }
+
+    .hero-stat-value {
+      font-family: var(--font-serif);
+      font-size: 48px;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .hero-stat-label {
+      font-size: 14px;
+      color: var(--dark-muted);
+    }
+
+    /* ===== Reality Check Section ===== */
+    .reality-section {
+      background-color: var(--background);
+    }
+
+    .reality-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .pain-card {
+      padding: 40px;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .pain-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .pain-icon {
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      font-size: 24px;
+    }
+
+    .pain-title {
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+
+    .pain-description {
+      font-size: 15px;
+      color: var(--muted-foreground);
+      line-height: 1.7;
+    }
+
+    /* ===== Services Section ===== */
+    .services-section {
+      background-color: var(--muted);
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 64px;
+    }
+
+    .section-title {
+      font-size: clamp(36px, 4vw, 48px);
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      font-size: 18px;
+      color: var(--muted-foreground);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .service-card {
+      background-color: var(--background);
+      padding: 48px 40px;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .service-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-8px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+    }
+
+    .service-number {
+      font-size: 12px;
+      color: var(--primary);
+      letter-spacing: 0.2em;
+      margin-bottom: 24px;
+    }
+
+    .service-title {
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+
+    .service-description {
+      font-size: 15px;
+      color: var(--muted-foreground);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .service-features {
+      list-style: none;
+    }
+
+    .service-features li {
+      font-size: 14px;
+      color: var(--muted-foreground);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .service-features li:last-child {
+      border-bottom: none;
+    }
+
+    .check-icon {
+      color: var(--primary);
+    }
+
+    /* ===== Proof Section ===== */
+    .proof-section {
+      background-color: var(--background);
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      margin-bottom: 64px;
+    }
+
+    .proof-card {
+      text-align: center;
+      padding: 40px 24px;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .proof-card:hover {
+      border-color: var(--primary);
+    }
+
+    .proof-value {
+      font-family: var(--font-serif);
+      font-size: 56px;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .proof-label {
+      font-size: 14px;
+      color: var(--muted-foreground);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* ===== Featured Work Section ===== */
+    .work-section {
+      background-color: var(--dark-bg);
+      color: var(--dark-foreground);
+    }
+
+    .work-item {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      margin-bottom: 120px;
+    }
+
+    .work-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .work-item:nth-child(even) {
+      direction: rtl;
+    }
+
+    .work-item:nth-child(even) > * {
+      direction: ltr;
+    }
+
+    .work-image {
+      aspect-ratio: 16/10;
+      background-color: var(--dark-bg-elevated);
+      border: 1px solid var(--dark-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--dark-muted);
+      font-size: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .work-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+    }
+
+    .work-category {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+
+    .work-title {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+
+    .work-description {
+      font-size: 16px;
+      color: var(--dark-muted);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .work-stats {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 32px;
+    }
+
+    .work-stat-value {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      color: var(--primary);
+    }
+
+    .work-stat-label {
+      font-size: 13px;
+      color: var(--dark-muted);
+    }
+
+    /* ===== Process Section ===== */
+    .process-section {
+      background-color: var(--muted);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+
+    .process-step {
+      position: relative;
+      padding: 40px 32px;
+      background-color: var(--background);
+      border: 1px solid var(--border);
+    }
+
+    .process-number {
+      font-family: var(--font-serif);
+      font-size: 48px;
+      color: var(--primary);
+      opacity: 0.3;
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+
+    .process-title {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .process-description {
+      font-size: 14px;
+      color: var(--muted-foreground);
+      line-height: 1.7;
+    }
+
+    /* ===== Testimonials Section ===== */
+    .testimonials-section {
+      background-color: var(--dark-bg-elevated);
+      color: var(--dark-foreground);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .testimonial-card {
+      padding: 48px;
+      background-color: var(--dark-bg);
+      border: 1px solid var(--dark-border);
+      position: relative;
+    }
+
+    .testimonial-quote {
+      font-size: 64px;
+      color: var(--primary);
+      opacity: 0.3;
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+
+    .testimonial-text {
+      font-size: 16px;
+      color: var(--dark-muted);
+      line-height: 1.8;
+      margin-bottom: 32px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .testimonial-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: var(--dark-bg-elevated);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--dark-muted);
+    }
+
+    .testimonial-name {
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .testimonial-role {
+      font-size: 13px;
+      color: var(--dark-muted);
+    }
+
+    /* ===== Pricing Section ===== */
+    .pricing-section {
+      background-color: var(--background);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .pricing-card {
+      padding: 48px 40px;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .pricing-card.featured {
+      border-color: var(--primary);
+      box-shadow: 0 20px 60px rgba(19, 141, 233, 0.15);
+      transform: scale(1.02);
+    }
+
+    .pricing-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background-color: var(--primary);
+      color: white;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 24px;
+    }
+
+    .pricing-name {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .pricing-price {
+      font-family: var(--font-serif);
+      font-size: 48px;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .pricing-period {
+      font-size: 14px;
+      color: var(--muted-foreground);
+      margin-bottom: 24px;
+    }
+
+    .pricing-description {
+      font-size: 15px;
+      color: var(--muted-foreground);
+      line-height: 1.7;
+      margin-bottom: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 32px;
+    }
+
+    .pricing-features li {
+      font-size: 14px;
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .pricing-btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* ===== FAQ Section ===== */
+    .faq-section {
+      background-color: var(--muted);
+    }
+
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      font-size: 18px;
+      font-weight: 500;
+      text-align: left;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-sans);
+    }
+
+    .faq-icon {
+      font-size: 24px;
+      color: var(--primary);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 300px;
+      padding-bottom: 24px;
+    }
+
+    .faq-answer p {
+      font-size: 15px;
+      color: var(--muted-foreground);
+      line-height: 1.7;
+    }
+
+    /* ===== Contact Section ===== */
+    .contact-section {
+      background-color: var(--dark-bg);
+      color: var(--dark-foreground);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+    }
+
+    .contact-title {
+      font-size: 48px;
+      margin-bottom: 24px;
+    }
+
+    .contact-description {
+      font-size: 18px;
+      color: var(--dark-muted);
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+
+    .contact-info {
+      margin-top: 40px;
+    }
+
+    .contact-info-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+      color: var(--dark-muted);
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--dark-muted);
+    }
+
+    .form-input,
+    .form-textarea {
+      padding: 16px;
+      background-color: var(--dark-bg-elevated);
+      border: 1px solid var(--dark-border);
+      color: var(--dark-foreground);
+      font-size: 16px;
+      font-family: var(--font-sans);
+      transition: border-color 0.3s ease;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .form-textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    /* ===== Footer ===== */
+    .footer {
+      background-color: var(--dark-bg);
+      color: var(--dark-foreground);
+      padding: 80px 0 40px;
+      border-top: 1px solid var(--dark-border);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 64px;
+    }
+
+    .footer-brand {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+
+    .footer-tagline {
+      font-size: 14px;
+      color: var(--dark-muted);
+      line-height: 1.7;
+      max-width: 300px;
+    }
+
+    .footer-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 24px;
+      color: var(--dark-muted);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: var(--dark-muted);
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--dark-foreground);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 40px;
+      border-top: 1px solid var(--dark-border);
+    }
+
+    .footer-copyright {
+      font-size: 13px;
+      color: var(--dark-muted);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-social a {
+      color: var(--dark-muted);
+      transition: color 0.3s ease;
+    }
+
+    .footer-social a:hover {
+      color: var(--dark-foreground);
+    }
+
+    /* ===== Responsive Design ===== */
+    @media (max-width: 1024px) {
+      :root {
+        --section-padding: 80px;
+      }
+
+      .hero-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .hero-image {
+        order: -1;
+        max-height: 400px;
+      }
+
+      .services-grid,
+      .testimonials-grid,
+      .pricing-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .reality-grid,
+      .proof-grid,
+      .process-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .work-item {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .work-item:nth-child(even) {
+        direction: ltr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --section-padding: 60px;
+      }
+
+      .nav {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      .hero-stats {
+        flex-wrap: wrap;
+        gap: 32px;
+      }
+
+      .services-grid,
+      .testimonials-grid,
+      .pricing-grid,
+      .reality-grid,
+      .proof-grid,
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-card.featured {
+        transform: none;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 24px;
+        text-align: center;
+      }
+
+      .hero-cta-group {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    /* ===== Reduced Motion ===== */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      .fade-up {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="header-container">
-            <a href="#hero" class="logo" aria-label="Verity Praxis Home">
-                <img src="./logo.png" alt="Verity Praxis Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="logo-fallback" style="display: none;">VP</div>
-                <span style="font-weight: 700; font-size: 1.25rem;">Verity Praxis</span>
-            </a>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#proof">Proof</a></li>
-                    <li><a href="#work">Work</a></li>
-                    <li><a href="#process">Process</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <a href="#contact" class="btn btn-primary">Book a Strategy Call</a>
-                <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
-            </nav>
-        </div>
-    </header>
 
-    <!-- Hero -->
-    <section id="hero" class="hero">
-        <h1>Stop Firefighting. Start Scaling.</h1>
-        <p class="subheadline">We build the systems, workflows, and messaging that turn chaos into consistent revenue. For operators who want honest strategy and real execution.</p>
-        <div class="hero-ctas">
-            <a href="#contact" class="btn btn-primary">Book a Strategy Call</a>
-            <a href="#contact" class="btn btn-secondary">Download the Ops Toolkit</a>
-        </div>
-        <div class="trust-strip">
-            <div class="trust-item">
-                <span class="trust-item-value" data-count="4.9">0</span>
-                <span class="trust-item-label">Avg. Rating</span>
-            </div>
-            <div class="trust-item">
-                <span class="trust-item-value" data-count="47">0</span>
-                <span class="trust-item-label">Teams Served</span>
-            </div>
-            <div class="trust-item">
-                <span class="trust-item-value" data-count="21">0</span>
-                <span class="trust-item-label">Avg. ROI %</span>
-            </div>
-        </div>
-        <p class="trust-note">No contracts. Clarity in the first call.</p>
-    </section>
-
-    <!-- Problem → Agitation → Solution -->
-    <section id="pas" class="fade-in">
-        <div class="section-header">
-            <h2>The Reality Check</h2>
-            <p>Every day you lose revenue to problems that have solutions.</p>
-        </div>
-        <div class="pas-grid">
-            <div class="pain-block">
-                <svg class="pain-block-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Manual Work Trap Icon: Clipboard with repetitive arrows -->
-                    <rect x="12" y="8" width="40" height="48" rx="4" fill="#E74C3C" opacity="0.1"/>
-                    <rect x="12" y="8" width="40" height="48" rx="4" stroke="#E74C3C" stroke-width="2"/>
-                    <path d="M20 16h24M20 24h24M20 32h16M20 40h20" stroke="#E74C3C" stroke-width="2" stroke-linecap="round"/>
-                    <circle cx="44" cy="32" r="8" fill="#E74C3C" opacity="0.2"/>
-                    <path d="M40 32l2 2 4-4M40 40l2 2 4-4" stroke="#E74C3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M48 28v8M48 36v8" stroke="#E74C3C" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-                <h3>The Manual Work Trap</h3>
-                <ul>
-                    <li>Copy-pasting data between tools</li>
-                    <li>Manual follow-ups that slip through cracks</li>
-                    <li>Spreadsheets that break when someone leaves</li>
-                    <li>Reporting that takes hours to compile</li>
-                </ul>
-                <p class="result-text">Result: Your team burns hours on busywork while revenue opportunities die in the queue.</p>
-            </div>
-            <div class="pain-block">
-                <svg class="pain-block-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Tool Chaos Icon: Disconnected platforms/tools -->
-                    <rect x="8" y="12" width="20" height="20" rx="3" fill="#E74C3C" opacity="0.1" stroke="#E74C3C" stroke-width="2"/>
-                    <rect x="36" y="12" width="20" height="20" rx="3" fill="#E74C3C" opacity="0.1" stroke="#E74C3C" stroke-width="2"/>
-                    <rect x="8" y="36" width="20" height="20" rx="3" fill="#E74C3C" opacity="0.1" stroke="#E74C3C" stroke-width="2"/>
-                    <rect x="36" y="36" width="20" height="20" rx="3" fill="#E74C3C" opacity="0.1" stroke="#E74C3C" stroke-width="2"/>
-                    <circle cx="18" cy="22" r="3" fill="#E74C3C"/>
-                    <circle cx="46" cy="22" r="3" fill="#E74C3C"/>
-                    <circle cx="18" cy="46" r="3" fill="#E74C3C"/>
-                    <circle cx="46" cy="46" r="3" fill="#E74C3C"/>
-                    <!-- Broken connection lines -->
-                    <path d="M28 22h2M34 22h2M28 46h2M34 46h2" stroke="#E74C3C" stroke-width="2" stroke-dasharray="2 2" opacity="0.5"/>
-                    <path d="M18 32v2M46 32v2" stroke="#E74C3C" stroke-width="2" stroke-dasharray="2 2" opacity="0.5"/>
-                </svg>
-                <h3>The Tool Chaos</h3>
-                <ul>
-                    <li>Five different platforms, zero integration</li>
-                    <li>Customer data scattered across systems</li>
-                    <li>No single source of truth</li>
-                    <li>Workflows that break when tools update</li>
-                </ul>
-                <p class="result-text">Result: Slow responses, inconsistent customer experience, and revenue left on the table.</p>
-            </div>
-            <div class="pain-block">
-                <svg class="pain-block-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Execution Gap Icon: Broken chain or strategy to execution gap -->
-                    <path d="M16 20L32 12L48 20" stroke="#E74C3C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M16 20v24M48 20v24" stroke="#E74C3C" stroke-width="2.5" stroke-linecap="round"/>
-                    <path d="M16 44L32 52L48 44" stroke="#E74C3C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <!-- Gap/broken link -->
-                    <rect x="28" y="30" width="8" height="8" rx="2" fill="white"/>
-                    <path d="M30 32h4M30 36h4" stroke="#E74C3C" stroke-width="2" stroke-linecap="round"/>
-                    <circle cx="20" cy="32" r="4" fill="#E74C3C" opacity="0.2"/>
-                    <circle cx="44" cy="32" r="4" fill="#E74C3C" opacity="0.2"/>
-                    <path d="M20 28l-4-4M20 36l-4 4" stroke="#E74C3C" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-                    <path d="M44 28l4-4M44 36l4 4" stroke="#E74C3C" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-                </svg>
-                <h3>The Execution Gap</h3>
-                <ul>
-                    <li>Great strategy, zero implementation</li>
-                    <li>Campaigns that start strong then fade</li>
-                    <li>Messaging that doesn't convert</li>
-                    <li>No clear process for scaling what works</li>
-                </ul>
-                <p class="result-text">Result: Strategy documents that gather dust while competitors capture your market.</p>
-            </div>
-        </div>
-        <div class="solution-block fade-in">
-            <h3>Verity Praxis: Honest Principles, Executed.</h3>
-            <p style="font-size: 1.125rem; color: var(--slate); max-width: 700px; margin: 0 auto;">We don't just write strategies. We build the systems, automations, and messaging frameworks that turn plans into profit. No fluff. No handoffs to "implementation teams." Just execution that moves the needle.</p>
-        </div>
-    </section>
-
-    <!-- Services -->
-    <section id="services" class="fade-in">
-        <div class="section-header">
-            <h2>What We Do</h2>
-            <p>Strategy, operations, and marketing—integrated for results.</p>
-        </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <h3>Brand Strategy</h3>
-                <p>Positioning that cuts through noise and connects with your ideal customers.</p>
-            </div>
-            <div class="service-card">
-                <h3>Go-to-Market Strategy</h3>
-                <p>Roadmaps that map customer journeys and identify conversion bottlenecks.</p>
-            </div>
-            <div class="service-card">
-                <h3>Integrated Marketing Campaigns</h3>
-                <p>Multi-channel campaigns with clear attribution and measurable outcomes.</p>
-            </div>
-            <div class="service-card">
-                <h3>Behavioral Economics in Marketing</h3>
-                <p>Apply psychology and decision science to increase conversions and retention.</p>
-            </div>
-            <div class="service-card">
-                <h3>Consumer Psychology</h3>
-                <p>Deep customer insights that drive messaging, product, and pricing decisions.</p>
-            </div>
-            <div class="service-card">
-                <h3>Social Media Management & Strategy</h3>
-                <p>Content systems and workflows that build engagement and drive revenue.</p>
-            </div>
-            <div class="service-card">
-                <h3>Content Creation & Brand Storytelling</h3>
-                <p>Messaging that converts—from email sequences to landing pages to sales decks.</p>
-            </div>
-            <div class="service-card">
-                <h3>Conversion Rate Optimization</h3>
-                <p>Data-driven testing and refinement that lifts conversion across the funnel.</p>
-            </div>
-            <div class="service-card">
-                <h3>Copywriting & Messaging Frameworks</h3>
-                <p>Templates and systems that ensure consistent, high-converting communication.</p>
-            </div>
-            <div class="service-card">
-                <h3>Customer Segmentation & Targeting</h3>
-                <p>Data-driven personas and segments that improve targeting and personalization.</p>
-            </div>
-            <div class="service-card">
-                <h3>Process Streamlining</h3>
-                <p>Decision trees, SOPs, and exception routing that eliminate bottlenecks.</p>
-            </div>
-            <div class="service-card">
-                <h3>Backend & Integrations</h3>
-                <p>Rate-limit aware syncs, pagination, retries, and structured logging.</p>
-            </div>
-            <div class="service-card">
-                <h3>Internal Tools & Dashboards</h3>
-                <p>Search portals, audit trails, and reporting that give your team visibility.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Proof -->
-    <section id="proof" class="fade-in">
-        <div class="section-header">
-            <h2>Measured Results</h2>
-            <p>Real outcomes from real systems. Not projections.</p>
-        </div>
-        <div class="proof-grid">
-            <div class="proof-card">
-                <div class="metric" data-count="21">0</div>
-                <div class="description">Revenue increase through consistency and automation-driven operations</div>
-                <div class="method">Measured via revenue attribution and workflow efficiency metrics</div>
-            </div>
-            <div class="proof-card">
-                <div class="metric" data-count="20">0</div>
-                <div class="description">Customer-wide revenue growth via behavioral insights and CRM analytics (HubSpot/Salesforce)</div>
-                <div class="method">Tracked through CRM pipeline analysis and customer behavior mapping</div>
-            </div>
-            <div class="proof-card">
-                <div class="metric" data-count="23">0</div>
-                <div class="description">Increase in platform traffic and double-digit revenue lift via social and workflows</div>
-                <div class="method">Analytics and attribution modeling across channels</div>
-            </div>
-            <div class="proof-card">
-                <div class="metric" data-count="18">0</div>
-                <div class="description">Increase in engagement and conversion performance via funnel copy and CRO</div>
-                <div class="method">A/B testing and conversion funnel analysis</div>
-            </div>
-        </div>
-        <div style="margin-top: 3rem; padding: 2rem; background: var(--off-white); border-radius: 12px; text-align: center;">
-            <h3 style="margin-bottom: 1rem; color: var(--charcoal);">How We Measure</h3>
-            <p style="color: var(--slate); max-width: 700px; margin: 0 auto;">We establish baseline metrics before any work begins. Then we track the same metrics through implementation and optimization. Revenue, conversion rates, engagement, and operational efficiency—measured the same way, every time.</p>
-        </div>
-    </section>
-
-    <!-- Work -->
-    <section id="work" class="fade-in">
-        <div class="section-header">
-            <h2>Featured Work</h2>
-            <p>Systems that scale. Results that last.</p>
-        </div>
-        <div class="work-grid">
-            <div class="work-card">
-                <div class="work-content">
-                    <h3>E-commerce Operations Overhaul</h3>
-                    <div class="problem">
-                        <strong>Problem:</strong> Manual order processing, scattered customer data, and inconsistent follow-ups were costing 15% in lost revenue.
-                    </div>
-                    <div class="solution">
-                        <strong>Solution:</strong> Built integrated automation workflows connecting Shopify, HubSpot, and internal tools. Created decision trees for exception handling and real-time dashboards for team visibility.
-                    </div>
-                    <div class="outcome">
-                        <strong>Outcome:</strong> 21% revenue increase. Processing time cut by 60%. Zero missed follow-ups.
-                    </div>
-                    <div style="margin-top: 1rem; font-size: 0.875rem; color: var(--slate);">
-                        <strong>Deliverables:</strong> Automation workflows, monitoring dashboard, exception routing system
-                    </div>
-                </div>
-                <div class="work-visual">
-                    <svg width="100%" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="400" height="300" fill="#F7F8FA"/>
-                        <rect x="20" y="20" width="120" height="80" rx="4" fill="#138DE9" opacity="0.2"/>
-                        <text x="80" y="65" text-anchor="middle" fill="#138DE9" font-size="14" font-weight="600">Shopify</text>
-                        <rect x="160" y="20" width="120" height="80" rx="4" fill="#0E5AB9" opacity="0.2"/>
-                        <text x="220" y="65" text-anchor="middle" fill="#0E5AB9" font-size="14" font-weight="600">HubSpot</text>
-                        <rect x="300" y="20" width="80" height="80" rx="4" fill="#138DE9" opacity="0.2"/>
-                        <text x="340" y="65" text-anchor="middle" fill="#138DE9" font-size="14" font-weight="600">DB</text>
-                        <line x1="140" y1="60" x2="160" y2="60" stroke="#138DE9" stroke-width="2" marker-end="url(#arrowhead)"/>
-                        <line x1="280" y1="60" x2="300" y2="60" stroke="#0E5AB9" stroke-width="2" marker-end="url(#arrowhead)"/>
-                        <rect x="20" y="140" width="360" height="140" rx="8" fill="white" stroke="#C6C7CA" stroke-width="2"/>
-                        <rect x="30" y="155" width="80" height="20" rx="2" fill="#138DE9"/>
-                        <text x="70" y="168" text-anchor="middle" fill="white" font-size="10">Orders</text>
-                        <rect x="120" y="155" width="80" height="20" rx="2" fill="#0E5AB9"/>
-                        <text x="160" y="168" text-anchor="middle" fill="white" font-size="10">Customers</text>
-                        <rect x="210" y="155" width="80" height="20" rx="2" fill="#27AE60"/>
-                        <text x="250" y="168" text-anchor="middle" fill="white" font-size="10">Revenue</text>
-                        <rect x="300" y="155" width="70" height="20" rx="2" fill="#E74C3C"/>
-                        <text x="335" y="168" text-anchor="middle" fill="white" font-size="10">Alerts</text>
-                        <line x1="30" y1="200" x2="370" y2="200" stroke="#E0E0E0" stroke-width="1"/>
-                        <line x1="30" y1="230" x2="370" y2="230" stroke="#E0E0E0" stroke-width="1"/>
-                        <line x1="30" y1="260" x2="370" y2="260" stroke="#E0E0E0" stroke-width="1"/>
-                        <defs>
-                            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                                <polygon points="0 0, 10 3, 0 6" fill="#138DE9"/>
-                            </marker>
-                        </defs>
-                    </svg>
-                </div>
-            </div>
-            <div class="work-card">
-                <div class="work-content">
-                    <h3>CRM Analytics & Behavioral Segmentation</h3>
-                    <div class="problem">
-                        <strong>Problem:</strong> Generic messaging and untargeted campaigns were leaving revenue on the table. No clear view of customer behavior patterns.
-                    </div>
-                    <div class="solution">
-                        <strong>Solution:</strong> Deep-dive CRM analysis (HubSpot/Salesforce) with behavioral segmentation. Built customer journey maps and personalized messaging frameworks aligned to segments.
-                    </div>
-                    <div class="outcome">
-                        <strong>Outcome:</strong> 20%+ revenue growth across customer base. 35% improvement in email open rates. Clear ROI by segment.
-                    </div>
-                    <div style="margin-top: 1rem; font-size: 0.875rem; color: var(--slate);">
-                        <strong>Deliverables:</strong> Segmentation model, CRM analytics dashboard, messaging templates, campaign system
-                    </div>
-                </div>
-                <div class="work-visual">
-                    <svg width="100%" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="400" height="300" fill="#F7F8FA"/>
-                        <circle cx="100" cy="80" r="50" fill="#138DE9" opacity="0.3"/>
-                        <circle cx="100" cy="80" r="30" fill="#138DE9" opacity="0.5"/>
-                        <text x="100" y="85" text-anchor="middle" fill="#0E5AB9" font-size="16" font-weight="600">Segment A</text>
-                        <circle cx="300" cy="80" r="50" fill="#0E5AB9" opacity="0.3"/>
-                        <circle cx="300" cy="80" r="30" fill="#0E5AB9" opacity="0.5"/>
-                        <text x="300" y="85" text-anchor="middle" fill="#0E5AB9" font-size="16" font-weight="600">Segment B</text>
-                        <rect x="50" y="160" width="300" height="120" rx="8" fill="white" stroke="#C6C7CA" stroke-width="2"/>
-                        <text x="200" y="185" text-anchor="middle" fill="#303030" font-size="14" font-weight="600">Customer Journey Funnel</text>
-                        <rect x="70" y="200" width="60" height="60" rx="4" fill="#138DE9" opacity="0.2"/>
-                        <text x="100" y="235" text-anchor="middle" fill="#138DE9" font-size="12" font-weight="600">Aware</text>
-                        <rect x="150" y="200" width="60" height="60" rx="4" fill="#0E5AB9" opacity="0.2"/>
-                        <text x="180" y="235" text-anchor="middle" fill="#0E5AB9" font-size="12" font-weight="600">Consider</text>
-                        <rect x="230" y="200" width="60" height="60" rx="4" fill="#27AE60" opacity="0.2"/>
-                        <text x="260" y="235" text-anchor="middle" fill="#27AE60" font-size="12" font-weight="600">Convert</text>
-                        <rect x="310" y="200" width="60" height="60" rx="4" fill="#E67E22" opacity="0.2"/>
-                        <text x="340" y="235" text-anchor="middle" fill="#E67E22" font-size="12" font-weight="600">Retain</text>
-                        <line x1="130" y1="230" x2="150" y2="230" stroke="#138DE9" stroke-width="2" marker-end="url(#arrow2)"/>
-                        <line x1="210" y1="230" x2="230" y2="230" stroke="#0E5AB9" stroke-width="2" marker-end="url(#arrow2)"/>
-                        <line x1="290" y1="230" x2="310" y2="230" stroke="#27AE60" stroke-width="2" marker-end="url(#arrow2)"/>
-                        <defs>
-                            <marker id="arrow2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                                <polygon points="0 0, 10 3, 0 6" fill="#4C5562"/>
-                            </marker>
-                        </defs>
-                    </svg>
-                </div>
-            </div>
-            <div class="work-card">
-                <div class="work-content">
-                    <h3>Social Media Workflows & Conversion Funnels</h3>
-                    <div class="problem">
-                        <strong>Problem:</strong> Social media was generating traffic but not revenue. Content was inconsistent, and there was no clear path from engagement to conversion.
-                    </div>
-                    <div class="solution">
-                        <strong>Solution:</strong> Built content systems and automated workflows connecting social engagement to email sequences and conversion pages. Applied behavioral economics principles to messaging.
-                    </div>
-                    <div class="outcome">
-                        <strong>Outcome:</strong> 23% increase in platform traffic. Double-digit revenue lift. Consistent content output with 40% less manual effort.
-                    </div>
-                    <div style="margin-top: 1rem; font-size: 0.875rem; color: var(--slate);">
-                        <strong>Deliverables:</strong> Content workflow system, automation sequences, conversion-optimized landing pages, copy system
-                    </div>
-                </div>
-                <div class="work-visual">
-                    <svg width="100%" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="400" height="300" fill="#F7F8FA"/>
-                        <rect x="150" y="20" width="100" height="60" rx="4" fill="#138DE9" opacity="0.3"/>
-                        <text x="200" y="55" text-anchor="middle" fill="#138DE9" font-size="14" font-weight="600">Social Media</text>
-                        <line x1="200" y1="80" x2="200" y2="120" stroke="#138DE9" stroke-width="2" marker-end="url(#arrow3)"/>
-                        <rect x="50" y="120" width="80" height="50" rx="4" fill="#0E5AB9" opacity="0.2"/>
-                        <text x="90" y="150" text-anchor="middle" fill="#0E5AB9" font-size="12" font-weight="600">Email</text>
-                        <rect x="150" y="120" width="100" height="50" rx="4" fill="#138DE9" opacity="0.2"/>
-                        <text x="200" y="150" text-anchor="middle" fill="#138DE9" font-size="12" font-weight="600">Landing</text>
-                        <rect x="270" y="120" width="80" height="50" rx="4" fill="#27AE60" opacity="0.2"/>
-                        <text x="310" y="150" text-anchor="middle" fill="#27AE60" font-size="12" font-weight="600">Convert</text>
-                        <line x1="130" y1="145" x2="150" y2="145" stroke="#138DE9" stroke-width="1.5" stroke-dasharray="3,3"/>
-                        <line x1="250" y1="145" x2="270" y2="145" stroke="#138DE9" stroke-width="1.5" stroke-dasharray="3,3"/>
-                        <rect x="50" y="200" width="300" height="80" rx="8" fill="white" stroke="#C6C7CA" stroke-width="2"/>
-                        <text x="200" y="225" text-anchor="middle" fill="#303030" font-size="12" font-weight="600">Content Calendar</text>
-                        <rect x="70" y="240" width="50" height="30" rx="2" fill="#138DE9" opacity="0.3"/>
-                        <rect x="130" y="240" width="50" height="30" rx="2" fill="#0E5AB9" opacity="0.3"/>
-                        <rect x="190" y="240" width="50" height="30" rx="2" fill="#138DE9" opacity="0.3"/>
-                        <rect x="250" y="240" width="50" height="30" rx="2" fill="#27AE60" opacity="0.3"/>
-                        <rect x="310" y="240" width="30" height="30" rx="2" fill="#E67E22" opacity="0.3"/>
-                        <defs>
-                            <marker id="arrow3" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                                <polygon points="0 0, 10 3, 0 6" fill="#138DE9"/>
-                            </marker>
-                        </defs>
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Process -->
-    <section id="process" class="fade-in">
-        <div class="section-header">
-            <h2>How It Works</h2>
-            <p>From diagnosis to optimization in weeks, not months.</p>
-        </div>
-        <div class="process-timeline">
-            <div class="process-step">
-                <div class="process-step-number">1</div>
-                <h4>Diagnose</h4>
-                <p>Audit your current systems, identify bottlenecks, and get clarity on what's actually happening.</p>
-            </div>
-            <div class="process-step">
-                <div class="process-step-number">2</div>
-                <h4>Map</h4>
-                <p>Build decision trees, messaging maps, and process flows that eliminate ambiguity.</p>
-            </div>
-            <div class="process-step">
-                <div class="process-step-number">3</div>
-                <h4>Build</h4>
-                <p>Create systems, automations, and copy frameworks that your team can actually use.</p>
-            </div>
-            <div class="process-step">
-                <div class="process-step-number">4</div>
-                <h4>Launch</h4>
-                <p>Roll out with team enablement, training, and documentation. No surprises.</p>
-            </div>
-            <div class="process-step">
-                <div class="process-step-number">5</div>
-                <h4>Optimize</h4>
-                <p>Monitor performance, iterate based on data, and scale what works.</p>
-            </div>
-        </div>
-        <div class="process-note">
-            <strong>Typical time to value: 2–4 weeks</strong> (depending on scope)
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section id="testimonials" class="fade-in">
-        <div class="section-header">
-            <h2>What Clients Say</h2>
-            <p>Real feedback from teams we've worked with.</p>
-        </div>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <p class="testimonial-text">"We went from spending 15 hours a week on manual data entry to zero. The automation system they built handles exceptions we didn't even know we had. Revenue is up 21% in six months."</p>
-                <div class="testimonial-author">Sarah Chen</div>
-                <div class="testimonial-role">Operations Director, E-commerce Platform</div>
-            </div>
-            <div class="testimonial-card">
-                <p class="testimonial-text">"Finally, someone who delivers what they promise. The CRM segmentation work transformed how we message customers. Our email campaigns now drive real revenue, not just opens."</p>
-                <div class="testimonial-author">Michael Rodriguez</div>
-                <div class="testimonial-role">VP Marketing, SaaS Company</div>
-            </div>
-            <div class="testimonial-card">
-                <p class="testimonial-text">"The social media workflows they built cut our content creation time in half while doubling engagement. Best part: it's all documented. Our team can actually run it themselves."</p>
-                <div class="testimonial-author">Jennifer Park</div>
-                <div class="testimonial-role">CMO, Consumer Brand</div>
-            </div>
-            <div class="testimonial-card">
-                <p class="testimonial-text">"Clear process, no handoffs, real results. We had a conversion problem. They built the funnel copy and testing framework. 18% lift in three months. That's execution."</p>
-                <div class="testimonial-author">David Thompson</div>
-                <div class="testimonial-role">Founder, B2B Platform</div>
-            </div>
-            <div class="testimonial-card">
-                <p class="testimonial-text">"The dashboard they built gives us visibility we never had. We can see exactly where orders get stuck, which automations need attention, and where revenue is coming from. Game changer."</p>
-                <div class="testimonial-author">Lisa Anderson</div>
-                <div class="testimonial-role">COO, Retail Operations</div>
-            </div>
-        </div>
-        <div class="logo-row">
-            <div class="logo-placeholder">CRM Team</div>
-            <div class="logo-placeholder">Ecommerce Ops</div>
-            <div class="logo-placeholder">SaaS Marketing</div>
-            <div class="logo-placeholder">Consumer Brand</div>
-            <div class="logo-placeholder">B2B Platform</div>
-        </div>
-        <div class="security-block">
-            <h3>Security & Reliability</h3>
-            <ul class="security-list">
-                <li>Rate-limit aware integrations</li>
-                <li>Retries + structured logging</li>
-                <li>Audit-friendly trails</li>
-                <li>Error handling and monitoring</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Packages -->
-    <section id="packages" class="fade-in">
-        <div class="section-header">
-            <h2>Engagement Options</h2>
-            <p>Choose the approach that fits your needs.</p>
-        </div>
-        <div class="packages-grid">
-            <div class="package-card">
-                <div class="package-header">
-                    <h3>Strategy Sprint</h3>
-                    <div class="package-price">Starting at $X</div>
-                </div>
-                <ul class="package-features">
-                    <li>Fast audit and roadmap</li>
-                    <li>Bottleneck identification</li>
-                    <li>Clear priorities and next steps</li>
-                    <li>Deliverable: Strategic roadmap</li>
-                </ul>
-                <a href="#contact" class="btn btn-primary">Book a Call</a>
-            </div>
-            <div class="package-card featured">
-                <div class="package-header">
-                    <h3>Build & Launch</h3>
-                    <div class="package-price">Starting at $X</div>
-                </div>
-                <ul class="package-features">
-                    <li>Full system build and implementation</li>
-                    <li>Automations and workflows</li>
-                    <li>Campaigns and messaging</li>
-                    <li>Team enablement and training</li>
-                    <li>Deliverable: Working systems</li>
-                </ul>
-                <a href="#contact" class="btn btn-primary">Book a Call</a>
-            </div>
-            <div class="package-card">
-                <div class="package-header">
-                    <h3>Retainer</h3>
-                    <div class="package-price">Starting at $X/mo</div>
-                </div>
-                <ul class="package-features">
-                    <li>Ongoing optimization</li>
-                    <li>Performance monitoring</li>
-                    <li>Iteration and improvements</li>
-                    <li>Strategic guidance</li>
-                </ul>
-                <a href="#contact" class="btn btn-primary">Book a Call</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="fade-in">
-        <div class="section-header">
-            <h2>Frequently Asked Questions</h2>
-            <p>Clear answers to common concerns.</p>
-        </div>
-        <div class="faq-list">
-            <div class="faq-item">
-                <button class="faq-question" aria-expanded="false">
-                    Will this break our current tools?
-                    <span class="faq-toggle">▼</span>
-                </button>
-                <div class="faq-answer">
-                    No. We work with your existing stack. Our integrations are built to be rate-limit aware and respect your current workflows. We'll audit your tools first and ensure everything plays nice together.
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question" aria-expanded="false">
-                    How long does implementation take?
-                    <span class="faq-toggle">▼</span>
-                </button>
-                <div class="faq-answer">
-                    Typical time to value is 2–4 weeks, depending on scope. Strategy Sprints can deliver a roadmap in a week. Full Build & Launch projects usually take 3–6 weeks. We'll give you a clear timeline after the initial audit.
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question" aria-expanded="false">
-                    What do you need from us?
-                    <span class="faq-toggle">▼</span>
-                </button>
-                <div class="faq-answer">
-                    Access to your tools (read-only for audit, write access for implementation), time with key team members to understand processes, and feedback during the build phase. We'll handle the technical work.
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question" aria-expanded="false">
-                    How do you prove ROI?
-                    <span class="faq-toggle">▼</span>
-                </button>
-                <div class="faq-answer">
-                    We establish baseline metrics before any work begins, then track the same metrics through implementation. You'll see revenue, conversion, engagement, and efficiency metrics—measured the same way, every time. No projections, just results.
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question" aria-expanded="false">
-                    Can you work with HubSpot/Salesforce?
-                    <span class="faq-toggle">▼</span>
-                </button>
-                <div class="faq-answer">
-                    Yes. We've built integrations and analytics for both HubSpot and Salesforce. We can work with your existing CRM setup, build custom workflows, and create dashboards that give you visibility into customer behavior and pipeline performance.
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question" aria-expanded="false">
-                    Do you build internal tools and integrations?
-                    <span class="faq-toggle">▼</span>
-                </button>
-                <div class="faq-answer">
-                    Absolutely. We build search portals, audit trails, reporting dashboards, and custom integrations between your tools. Everything is built with rate-limit awareness, retries, structured logging, and error handling.
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="fade-in">
-        <div class="section-header">
-            <h2>Get Started</h2>
-            <p>Book a strategy call or download our ops toolkit.</p>
-        </div>
-        <div class="contact-form">
-            <div class="form-success" id="formSuccess">
-                Thanks! We'll be in touch soon.
-            </div>
-            <form id="contactForm">
-                <div class="form-group">
-                    <label for="name">Name *</label>
-                    <input type="text" id="name" name="name" required aria-required="true">
-                    <div class="form-error" id="nameError">Please enter your name</div>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" id="email" name="email" required aria-required="true">
-                    <div class="form-error" id="emailError">Please enter a valid email</div>
-                </div>
-                <div class="form-group">
-                    <label for="company">Company</label>
-                    <input type="text" id="company" name="company">
-                </div>
-                <div class="form-group">
-                    <label for="role">Role</label>
-                    <input type="text" id="role" name="role">
-                </div>
-                <div class="form-group">
-                    <label for="help">What do you need help with? *</label>
-                    <select id="help" name="help" required aria-required="true">
-                        <option value="">Select an option</option>
-                        <option value="strategy">Strategy & Planning</option>
-                        <option value="automation">Automation & Operations</option>
-                        <option value="marketing">Marketing & Campaigns</option>
-                        <option value="integrations">Integrations & Tools</option>
-                        <option value="other">Other</option>
-                    </select>
-                    <div class="form-error" id="helpError">Please select an option</div>
-                </div>
-                <div class="form-group">
-                    <label for="timeline">Timeline</label>
-                    <select id="timeline" name="timeline">
-                        <option value="">Select timeline</option>
-                        <option value="asap">ASAP</option>
-                        <option value="1month">Within 1 month</option>
-                        <option value="3months">Within 3 months</option>
-                        <option value="exploring">Just exploring</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="budget">Budget Range</label>
-                    <select id="budget" name="budget">
-                        <option value="">Select budget range</option>
-                        <option value="under10k">Under $10K</option>
-                        <option value="10k-25k">$10K - $25K</option>
-                        <option value="25k-50k">$25K - $50K</option>
-                        <option value="50kplus">$50K+</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary btn-submit" id="submitBtn">Send Message</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h4>Verity Praxis</h4>
-                <p style="margin-top: 0.5rem; color: var(--silver);">Honest Principles, Executed.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Services</h4>
-                <ul>
-                    <li><a href="#services">Strategy</a></li>
-                    <li><a href="#services">Operations</a></li>
-                    <li><a href="#services">Marketing</a></li>
-                    <li><a href="#services">Integrations</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="#work">Work</a></li>
-                    <li><a href="#process">Process</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <p style="margin-top: 0.5rem; color: var(--silver);">Email: hello@veritypraxis.com</p>
-                <a href="#contact" class="btn btn-primary">Book a Call</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Verity Praxis, LLC. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Floating CTA (Mobile) -->
-    <div class="floating-cta">
-        <a href="#contact" class="btn btn-primary">Book a Strategy Call</a>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="#" class="logo">Verity Praxis</a>
+        <nav class="nav">
+          <a href="#services" class="nav-link link-underline">Services</a>
+          <a href="#work" class="nav-link link-underline">Work</a>
+          <a href="#process" class="nav-link link-underline">Process</a>
+          <a href="#pricing" class="nav-link link-underline">Pricing</a>
+          <a href="#contact" class="nav-link link-underline">Contact</a>
+        </nav>
+        <a href="#contact" class="btn header-cta">
+          Start Project
+          <span class="btn-arrow">→</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </div>
+  </header>
 
-    <script>
-        // Form endpoint - set this to your backend endpoint, or leave empty to simulate success
-        const FORM_ENDPOINT = "";
+  <!-- Hero Section -->
+  <section class="hero section-dark">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <p class="hero-eyebrow fade-up">Premium Digital Consulting</p>
+          <h1 class="hero-title fade-up stagger-1">Strategic Growth for Ambitious Businesses</h1>
+          <p class="hero-subtitle fade-up stagger-2">We transform digital presence into measurable results through data-driven marketing, cutting-edge automation, and strategic consulting.</p>
+          <div class="hero-cta-group fade-up stagger-3">
+            <a href="#contact" class="btn btn-primary">
+              Book Discovery Call
+              <span class="btn-arrow">→</span>
+            </a>
+            <a href="#work" class="btn">
+              View Our Work
+              <span class="btn-arrow">→</span>
+            </a>
+          </div>
+          <div class="hero-stats fade-up stagger-4">
+            <div class="hero-stat">
+              <div class="hero-stat-value">150+</div>
+              <div class="hero-stat-label">Projects Delivered</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value">$50M+</div>
+              <div class="hero-stat-label">Revenue Generated</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value">98%</div>
+              <div class="hero-stat-label">Client Retention</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-image fade-up stagger-2">
+          <!-- Image placeholder: public/images/hero-image.jpg -->
+          <span>Hero Image</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // Check for reduced motion preference
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  <!-- Reality Check Section -->
+  <section class="reality-section section">
+    <div class="container">
+      <div class="divider-label fade-up">The Reality Check</div>
+      <div class="section-header fade-up stagger-1">
+        <h2 class="section-title">Sound Familiar?</h2>
+        <p class="section-subtitle">These are the challenges that keep business owners up at night.</p>
+      </div>
+      <div class="reality-grid">
+        <div class="pain-card fade-up stagger-1">
+          <div class="pain-icon">📉</div>
+          <h3 class="pain-title">Inconsistent Revenue</h3>
+          <p class="pain-description">Your sales pipeline is unpredictable, making it impossible to plan for growth or scale your operations effectively.</p>
+        </div>
+        <div class="pain-card fade-up stagger-2">
+          <div class="pain-icon">⏰</div>
+          <h3 class="pain-title">Time Drain</h3>
+          <p class="pain-description">You're stuck doing everything manually, from lead follow-ups to reporting, leaving no time for strategic thinking.</p>
+        </div>
+        <div class="pain-card fade-up stagger-3">
+          <div class="pain-icon">🎯</div>
+          <h3 class="pain-title">Scattered Marketing</h3>
+          <p class="pain-description">Your marketing efforts feel disconnected—no clear strategy, no measurable results, just money disappearing into the void.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href === '#' || href === '#hero') return;
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if (target) {
-                    const headerOffset = 80;
-                    const elementPosition = target.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: prefersReducedMotion ? 'auto' : 'smooth'
-                    });
-                }
+  <!-- Services Section -->
+  <section id="services" class="services-section section">
+    <div class="container">
+      <div class="divider-label fade-up">What We Do</div>
+      <div class="section-header fade-up stagger-1">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-subtitle">Comprehensive digital solutions designed to drive measurable growth.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card fade-up stagger-1">
+          <div class="service-number">01</div>
+          <h3 class="service-title">Digital Marketing</h3>
+          <p class="service-description">Data-driven campaigns that convert visitors into customers and customers into advocates.</p>
+          <ul class="service-features">
+            <li><span class="check-icon">✓</span> SEO & Content Strategy</li>
+            <li><span class="check-icon">✓</span> Paid Advertising (Google, Meta)</li>
+            <li><span class="check-icon">✓</span> Email Marketing Automation</li>
+            <li><span class="check-icon">✓</span> Social Media Management</li>
+          </ul>
+        </div>
+        <div class="service-card fade-up stagger-2">
+          <div class="service-number">02</div>
+          <h3 class="service-title">Business Automation</h3>
+          <p class="service-description">Streamline operations and eliminate manual work with intelligent automation systems.</p>
+          <ul class="service-features">
+            <li><span class="check-icon">✓</span> CRM Implementation</li>
+            <li><span class="check-icon">✓</span> Workflow Automation</li>
+            <li><span class="check-icon">✓</span> Lead Nurturing Systems</li>
+            <li><span class="check-icon">✓</span> Reporting Dashboards</li>
+          </ul>
+        </div>
+        <div class="service-card fade-up stagger-3">
+          <div class="service-number">03</div>
+          <h3 class="service-title">Strategic Consulting</h3>
+          <p class="service-description">Expert guidance to align your digital initiatives with business objectives.</p>
+          <ul class="service-features">
+            <li><span class="check-icon">✓</span> Growth Strategy</li>
+            <li><span class="check-icon">✓</span> Digital Transformation</li>
+            <li><span class="check-icon">✓</span> Market Analysis</li>
+            <li><span class="check-icon">✓</span> Performance Optimization</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof Section -->
+  <section class="proof-section section">
+    <div class="container">
+      <div class="divider-label fade-up">The Proof</div>
+      <div class="section-header fade-up stagger-1">
+        <h2 class="section-title">Results That Speak</h2>
+        <p class="section-subtitle">Numbers don't lie. Here's what we've achieved for our clients.</p>
+      </div>
+      <div class="proof-grid">
+        <div class="proof-card fade-up stagger-1">
+          <div class="proof-value">340%</div>
+          <div class="proof-label">Avg. ROI Increase</div>
+        </div>
+        <div class="proof-card fade-up stagger-2">
+          <div class="proof-value">67%</div>
+          <div class="proof-label">Reduction in CAC</div>
+        </div>
+        <div class="proof-card fade-up stagger-3">
+          <div class="proof-value">4.2x</div>
+          <div class="proof-label">Revenue Growth</div>
+        </div>
+        <div class="proof-card fade-up stagger-4">
+          <div class="proof-value">85%</div>
+          <div class="proof-label">Time Saved</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Work Section -->
+  <section id="work" class="work-section section section-dark">
+    <div class="container">
+      <div class="divider-label fade-up">Featured Work</div>
+      <div class="section-header fade-up stagger-1">
+        <h2 class="section-title">Case Studies</h2>
+        <p class="section-subtitle" style="color: var(--dark-muted);">Real results from real partnerships.</p>
+      </div>
+
+      <div class="work-item fade-up">
+        <div class="work-image">
+          <!-- Image placeholder: public/images/work-ecommerce.jpg -->
+          <span>E-commerce Case Study Image</span>
+        </div>
+        <div class="work-content">
+          <div class="work-category">E-commerce</div>
+          <h3 class="work-title">Fashion Retailer Transformation</h3>
+          <p class="work-description">Complete digital overhaul for a mid-size fashion retailer, including new e-commerce platform, marketing automation, and customer journey optimization.</p>
+          <div class="work-stats">
+            <div class="work-stat">
+              <div class="work-stat-value">+285%</div>
+              <div class="work-stat-label">Online Revenue</div>
+            </div>
+            <div class="work-stat">
+              <div class="work-stat-value">-45%</div>
+              <div class="work-stat-label">Cart Abandonment</div>
+            </div>
+          </div>
+          <a href="#" class="btn">
+            Read Case Study
+            <span class="btn-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="work-item fade-up">
+        <div class="work-image">
+          <!-- Image placeholder: public/images/work-crm.jpg -->
+          <span>CRM Case Study Image</span>
+        </div>
+        <div class="work-content">
+          <div class="work-category">B2B SaaS</div>
+          <h3 class="work-title">CRM Analytics Platform</h3>
+          <p class="work-description">Developed a comprehensive lead scoring and analytics system that transformed how this SaaS company identifies and nurtures high-value prospects.</p>
+          <div class="work-stats">
+            <div class="work-stat">
+              <div class="work-stat-value">+180%</div>
+              <div class="work-stat-label">Qualified Leads</div>
+            </div>
+            <div class="work-stat">
+              <div class="work-stat-value">3.5x</div>
+              <div class="work-stat-label">Sales Velocity</div>
+            </div>
+          </div>
+          <a href="#" class="btn">
+            Read Case Study
+            <span class="btn-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="work-item fade-up">
+        <div class="work-image">
+          <!-- Image placeholder: public/images/work-social.jpg -->
+          <span>Social Media Case Study Image</span>
+        </div>
+        <div class="work-content">
+          <div class="work-category">Social Media</div>
+          <h3 class="work-title">Viral Brand Campaign</h3>
+          <p class="work-description">Created and executed a multi-platform social media strategy that took this wellness brand from obscurity to industry leader in 8 months.</p>
+          <div class="work-stats">
+            <div class="work-stat">
+              <div class="work-stat-value">2.1M</div>
+              <div class="work-stat-label">Impressions/Month</div>
+            </div>
+            <div class="work-stat">
+              <div class="work-stat-value">+520%</div>
+              <div class="work-stat-label">Engagement Rate</div>
+            </div>
+          </div>
+          <a href="#" class="btn">
+            Read Case Study
+            <span class="btn-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section id="process" class="process-section section">
+    <div class="container">
+      <div class="divider-label fade-up">How We Work</div>
+      <div class="section-header fade-up stagger-1">
+        <h2 class="section-title">Our Process</h2>
+        <p class="section-subtitle">A proven methodology that delivers consistent results.</p>
+      </div>
+      <div class="process-grid">
+        <div class="process-step fade-up stagger-1">
+          <div class="process-number">01</div>
+          <h3 class="process-title">Discovery</h3>
+          <p class="process-description">We dive deep into your business, analyzing your market, competitors, and current digital footprint.</p>
+        </div>
+        <div class="process-step fade-up stagger-2">
+          <div class="process-number">02</div>
+          <h3 class="process-title">Strategy</h3>
+          <p class="process-description">We craft a customized roadmap with clear milestones, KPIs, and actionable next steps.</p>
+        </div>
+        <div class="process-step fade-up stagger-3">
+          <div class="process-number">03</div>
+          <h3 class="process-title">Execution</h3>
+          <p class="process-description">Our team implements the strategy with precision, keeping you informed every step of the way.</p>
+        </div>
+        <div class="process-step fade-up stagger-4">
+          <div class="process-number">04</div>
+          <h3 class="process-title">Optimization</h3>
+          <p class="process-description">We continuously analyze results and refine our approach to maximize your ROI.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials-section section section-dark-elevated">
+    <div class="container">
+      <div class="divider-label fade-up">Client Testimonials</div>
+      <div class="section-header fade-up stagger-1">
+        <h2 class="section-title">What They Say</h2>
+        <p class="section-subtitle" style="color: var(--dark-muted);">Don't take our word for it—hear from our clients.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-up stagger-1">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">Verity Praxis transformed our digital presence completely. Our revenue has tripled since we started working together, and the ROI has been incredible.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <!-- Image placeholder: public/images/testimonial-1.jpg -->
+              JD
+            </div>
+            <div>
+              <div class="testimonial-name">Jennifer Davis</div>
+              <div class="testimonial-role">CEO, StyleHouse Retail</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up stagger-2">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">The automation systems they built for us saved our team 20+ hours per week. We can finally focus on what matters—growing the business.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <!-- Image placeholder: public/images/testimonial-2.jpg -->
+              MC
+            </div>
+            <div>
+              <div class="testimonial-name">Michael Chen</div>
+              <div class="testimonial-role">Founder, TechFlow Solutions</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up stagger-3">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">Their strategic insights were game-changing. They didn't just execute—they helped us rethink our entire approach to digital marketing.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <!-- Image placeholder: public/images/testimonial-3.jpg -->
+              SW
+            </div>
+            <div>
+              <div class="testimonial-name">Sarah Williams</div>
+              <div class="testimonial-role">CMO, GreenLeaf Wellness</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="pricing-section section">
+    <div class="container">
+      <div class="divider-label fade-up">Investment</div>
+      <div class="section-header fade-up stagger-1">
+        <h2 class="section-title">Pricing Packages</h2>
+        <p class="section-subtitle">Flexible options designed to match your growth stage.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card fade-up stagger-1">
+          <h3 class="pricing-name">Starter</h3>
+          <div class="pricing-price">$2,500</div>
+          <div class="pricing-period">per month</div>
+          <p class="pricing-description">Perfect for small businesses ready to establish a strong digital foundation.</p>
+          <ul class="pricing-features">
+            <li><span class="check-icon">✓</span> SEO Optimization</li>
+            <li><span class="check-icon">✓</span> Social Media Management</li>
+            <li><span class="check-icon">✓</span> Monthly Reporting</li>
+            <li><span class="check-icon">✓</span> Email Support</li>
+          </ul>
+          <a href="#contact" class="btn pricing-btn">
+            Get Started
+            <span class="btn-arrow">→</span>
+          </a>
+        </div>
+        <div class="pricing-card featured fade-up stagger-2">
+          <div class="pricing-badge">Most Popular</div>
+          <h3 class="pricing-name">Growth</h3>
+          <div class="pricing-price">$5,000</div>
+          <div class="pricing-period">per month</div>
+          <p class="pricing-description">For scaling businesses that need comprehensive marketing and automation.</p>
+          <ul class="pricing-features">
+            <li><span class="check-icon">✓</span> Everything in Starter</li>
+            <li><span class="check-icon">✓</span> Paid Advertising Management</li>
+            <li><span class="check-icon">✓</span> Marketing Automation</li>
+            <li><span class="check-icon">✓</span> CRM Integration</li>
+            <li><span class="check-icon">✓</span> Weekly Strategy Calls</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary pricing-btn">
+            Get Started
+            <span class="btn-arrow">→</span>
+          </a>
+        </div>
+        <div class="pricing-card fade-up stagger-3">
+          <h3 class="pricing-name">Enterprise</h3>
+          <div class="pricing-price">Custom</div>
+          <div class="pricing-period">tailored to needs</div>
+          <p class="pricing-description">Full-service partnership for established businesses with complex requirements.</p>
+          <ul class="pricing-features">
+            <li><span class="check-icon">✓</span> Everything in Growth</li>
+            <li><span class="check-icon">✓</span> Dedicated Account Team</li>
+            <li><span class="check-icon">✓</span> Custom Development</li>
+            <li><span class="check-icon">✓</span> Priority Support</li>
+            <li><span class="check-icon">✓</span> Quarterly Business Reviews</li>
+          </ul>
+          <a href="#contact" class="btn pricing-btn">
+            Contact Us
+            <span class="btn-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section section">
+    <div class="container">
+      <div class="divider-label fade-up">FAQ</div>
+      <div class="section-header fade-up stagger-1">
+        <h2 class="section-title">Common Questions</h2>
+        <p class="section-subtitle">Everything you need to know before we get started.</p>
+      </div>
+      <div class="faq-container">
+        <div class="faq-item fade-up stagger-1">
+          <button class="faq-question">
+            How long does it take to see results?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Most clients see initial improvements within 30-60 days, with significant results typically appearing at the 90-day mark. However, timelines vary based on your starting point, industry, and specific goals.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-up stagger-2">
+          <button class="faq-question">
+            What industries do you work with?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>We work across various industries including e-commerce, SaaS, professional services, healthcare, and consumer brands. Our strategies are customized to your specific market and audience.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-up stagger-3">
+          <button class="faq-question">
+            Do you require long-term contracts?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>We typically recommend a 6-month minimum engagement to see meaningful results, but we offer flexible terms. Our retention rate speaks for itself—clients stay because of results, not contracts.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-up stagger-4">
+          <button class="faq-question">
+            How do you measure success?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>We establish clear KPIs at the start of every engagement—whether that's revenue growth, lead generation, conversion rates, or operational efficiency. You'll receive transparent reporting on all metrics that matter.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section section section-dark">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-content fade-up">
+          <h2 class="contact-title">Let's Build Something Extraordinary</h2>
+          <p class="contact-description">Ready to transform your digital presence? Book a free discovery call and let's discuss how we can help you achieve your goals.</p>
+          <div class="contact-info">
+            <div class="contact-info-item">
+              <span>📧</span>
+              <span>hello@veritypraxis.com</span>
+            </div>
+            <div class="contact-info-item">
+              <span>📞</span>
+              <span>+1 (555) 123-4567</span>
+            </div>
+            <div class="contact-info-item">
+              <span>📍</span>
+              <span>New York, NY</span>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form fade-up stagger-1">
+          <div class="form-group">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-input" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-input" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Company</label>
+            <input type="text" class="form-input" placeholder="Your company">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <textarea class="form-textarea" placeholder="Tell us about your project..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+            Send Message
+            <span class="btn-arrow">→</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer section-dark">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">Verity Praxis</div>
+          <p class="footer-tagline">Strategic digital consulting that transforms ambitious businesses through data-driven marketing and cutting-edge automation.</p>
+        </div>
+        <div>
+          <h4 class="footer-title">Services</h4>
+          <ul class="footer-links">
+            <li><a href="#services" class="link-underline">Digital Marketing</a></li>
+            <li><a href="#services" class="link-underline">Business Automation</a></li>
+            <li><a href="#services" class="link-underline">Strategic Consulting</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Company</h4>
+          <ul class="footer-links">
+            <li><a href="#work" class="link-underline">Case Studies</a></li>
+            <li><a href="#process" class="link-underline">Our Process</a></li>
+            <li><a href="#pricing" class="link-underline">Pricing</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Connect</h4>
+          <ul class="footer-links">
+            <li><a href="#contact" class="link-underline">Contact Us</a></li>
+            <li><a href="#" class="link-underline">LinkedIn</a></li>
+            <li><a href="#" class="link-underline">Twitter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2024 Verity Praxis. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="#" class="link-underline">LinkedIn</a>
+          <a href="#" class="link-underline">Twitter</a>
+          <a href="#" class="link-underline">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript for Animations -->
+  <script>
+    // Intersection Observer for scroll animations
+    document.addEventListener('DOMContentLoaded', function() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      document.querySelectorAll('.fade-up').forEach(el => {
+        observer.observe(el);
+      });
+
+      // FAQ Accordion
+      document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+          const faqItem = button.parentElement;
+          const isActive = faqItem.classList.contains('active');
+          
+          // Close all FAQ items
+          document.querySelectorAll('.faq-item').forEach(item => {
+            item.classList.remove('active');
+          });
+
+          // Open clicked item if it wasn't active
+          if (!isActive) {
+            faqItem.classList.add('active');
+          }
+        });
+      });
+
+      // Mobile nav toggle
+      const navToggle = document.querySelector('.nav-toggle');
+      const nav = document.querySelector('.nav');
+      
+      if (navToggle) {
+        navToggle.addEventListener('click', () => {
+          nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+      }
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
             });
+          }
         });
+      });
+    });
+  </script>
 
-        // Active section highlighting
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-
-        const observerOptions = {
-            root: null,
-            rootMargin: '-20% 0px -60% 0px',
-            threshold: 0
-        };
-
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.getAttribute('id');
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${id}`) {
-                            link.classList.add('active');
-                        }
-                    });
-                }
-            });
-        }, observerOptions);
-
-        sections.forEach(section => {
-            sectionObserver.observe(section);
-        });
-
-        // Animated counters
-        function animateCounter(element, target, duration = 2000) {
-            if (prefersReducedMotion) {
-                element.textContent = target;
-                return;
-            }
-
-            const start = 0;
-            const increment = target / (duration / 16);
-            let current = start;
-
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    element.textContent = target;
-                    clearInterval(timer);
-                } else {
-                    element.textContent = Math.floor(current);
-                }
-            }, 16);
-        }
-
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const element = entry.target;
-                    const target = parseFloat(element.getAttribute('data-count'));
-                    if (target && element.textContent === '0') {
-                        animateCounter(element, target);
-                    }
-                    counterObserver.unobserve(element);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        // Observe trust strip counters
-        document.querySelectorAll('.trust-item-value[data-count]').forEach(counter => {
-            counterObserver.observe(counter);
-        });
-
-        // Observe proof card metrics
-        document.querySelectorAll('.proof-card .metric[data-count]').forEach(counter => {
-            counterObserver.observe(counter);
-        });
-
-        // FAQ Accordion
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', function() {
-                const item = this.closest('.faq-item');
-                const answer = item.querySelector('.faq-answer');
-                const isActive = this.classList.contains('active');
-
-                // Close all FAQ items
-                document.querySelectorAll('.faq-item').forEach(faqItem => {
-                    const faqQuestion = faqItem.querySelector('.faq-question');
-                    const faqAnswer = faqItem.querySelector('.faq-answer');
-                    faqQuestion.classList.remove('active');
-                    faqAnswer.classList.remove('active');
-                    faqQuestion.setAttribute('aria-expanded', 'false');
-                });
-
-                // Toggle current item
-                if (!isActive) {
-                    this.classList.add('active');
-                    answer.classList.add('active');
-                    this.setAttribute('aria-expanded', 'true');
-                }
-            });
-
-            // Keyboard support
-            question.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    this.click();
-                }
-            });
-        });
-
-        // Fade-in animations
-        const fadeInObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    fadeInObserver.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
-
-        // Observe fade-in elements
-        document.querySelectorAll('.fade-in').forEach(element => {
-            fadeInObserver.observe(element);
-        });
-
-        // Observe card components for entrance animations
-        // Only observe if prefers-reduced-motion is not enabled
-        if (!prefersReducedMotion) {
-            document.querySelectorAll('.service-card, .proof-card, .testimonial-card, .package-card, .work-card').forEach(card => {
-                fadeInObserver.observe(card);
-            });
-        } else {
-            // If reduced motion, make cards visible immediately
-            document.querySelectorAll('.service-card, .proof-card, .testimonial-card, .package-card, .work-card').forEach(card => {
-                card.classList.add('visible');
-            });
-        }
-
-        // Form validation and submission
-        const contactForm = document.getElementById('contactForm');
-        const formSuccess = document.getElementById('formSuccess');
-        const submitBtn = document.getElementById('submitBtn');
-
-        function showError(input, errorElement, message) {
-            input.classList.add('error');
-            errorElement.textContent = message;
-            errorElement.classList.add('active');
-        }
-
-        function clearError(input, errorElement) {
-            input.classList.remove('error');
-            errorElement.classList.remove('active');
-        }
-
-        function validateEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-        }
-
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-
-            // Clear previous errors
-            document.querySelectorAll('.form-error').forEach(err => {
-                err.classList.remove('active');
-            });
-            document.querySelectorAll('.form-group input, .form-group select, .form-group textarea').forEach(input => {
-                input.classList.remove('error');
-            });
-
-            // Get form fields
-            const nameInput = document.getElementById('name');
-            const emailInput = document.getElementById('email');
-            const helpSelect = document.getElementById('help');
-            const nameError = document.getElementById('nameError');
-            const emailError = document.getElementById('emailError');
-            const helpError = document.getElementById('helpError');
-
-            let isValid = true;
-
-            // Validate name
-            if (!nameInput.value.trim()) {
-                showError(nameInput, nameError, 'Please enter your name');
-                isValid = false;
-            }
-
-            // Validate email
-            if (!emailInput.value.trim()) {
-                showError(emailInput, emailError, 'Please enter your email');
-                isValid = false;
-            } else if (!validateEmail(emailInput.value)) {
-                showError(emailInput, emailError, 'Please enter a valid email address');
-                isValid = false;
-            }
-
-            // Validate help dropdown
-            if (!helpSelect.value) {
-                showError(helpSelect, helpError, 'Please select an option');
-                isValid = false;
-            }
-
-            if (!isValid) {
-                return;
-            }
-
-            // Disable submit button
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending...';
-
-            // Collect form data
-            const formData = {
-                name: nameInput.value.trim(),
-                email: emailInput.value.trim(),
-                company: document.getElementById('company').value.trim(),
-                role: document.getElementById('role').value.trim(),
-                help: helpSelect.value,
-                timeline: document.getElementById('timeline').value,
-                budget: document.getElementById('budget').value,
-                message: document.getElementById('message').value.trim()
-            };
-
-            try {
-                if (FORM_ENDPOINT) {
-                    // POST to endpoint
-                    const response = await fetch(FORM_ENDPOINT, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(formData)
-                    });
-
-                    if (!response.ok) {
-                        throw new Error('Form submission failed');
-                    }
-                } else {
-                    // Simulate API call
-                    await new Promise(resolve => setTimeout(resolve, 1000));
-                }
-
-                // Show success message
-                formSuccess.classList.add('active');
-                contactForm.reset();
-
-                // Scroll to success message
-                formSuccess.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'nearest' });
-
-                // Hide success message after 5 seconds
-                setTimeout(() => {
-                    formSuccess.classList.remove('active');
-                }, 5000);
-
-            } catch (error) {
-                alert('Sorry, there was an error submitting your form. Please try again or email us directly.');
-                console.error('Form submission error:', error);
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Send Message';
-            }
-        });
-
-        // Real-time validation
-        document.getElementById('name').addEventListener('blur', function() {
-            const error = document.getElementById('nameError');
-            if (!this.value.trim()) {
-                showError(this, error, 'Please enter your name');
-            } else {
-                clearError(this, error);
-            }
-        });
-
-        document.getElementById('email').addEventListener('blur', function() {
-            const error = document.getElementById('emailError');
-            if (!this.value.trim()) {
-                showError(this, error, 'Please enter your email');
-            } else if (!validateEmail(this.value)) {
-                showError(this, error, 'Please enter a valid email address');
-            } else {
-                clearError(this, error);
-            }
-        });
-
-        document.getElementById('help').addEventListener('change', function() {
-            const error = document.getElementById('helpError');
-            if (this.value) {
-                clearError(this, error);
-            }
-        });
-    </script>
 </body>
 </html>
