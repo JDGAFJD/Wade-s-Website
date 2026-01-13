@@ -1536,6 +1536,123 @@
       line-height: 1.8;
     }
 
+    /* ===== Team Section ===== */
+    .team-section {
+      background-color: var(--background);
+      color: var(--foreground);
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .team-card {
+      text-align: center;
+      padding: 40px 24px;
+      background: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .section-dark .team-card {
+      background: var(--dark-bg-elevated);
+      border-color: var(--dark-border);
+    }
+
+    .team-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-dark .team-card:hover {
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .team-image {
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 24px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid var(--primary);
+      position: relative;
+    }
+
+    .team-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .team-silhouette {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--muted) 0%, var(--border) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .section-dark .team-silhouette {
+      background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-border) 100%);
+    }
+
+    .team-silhouette svg {
+      width: 80%;
+      height: 80%;
+      opacity: 0.5;
+    }
+
+    .team-name {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      margin-bottom: 8px;
+      color: var(--foreground);
+    }
+
+    .section-dark .team-name {
+      color: var(--dark-foreground);
+    }
+
+    .team-role {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .team-bio {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--muted-foreground);
+    }
+
+    .section-dark .team-bio {
+      color: var(--dark-muted);
+    }
+
+    @media (max-width: 992px) {
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .team-image {
+        width: 150px;
+        height: 150px;
+      }
+    }
+
     /* ===== Contact Section ===== */
     .contact-section {
       background-color: var(--dark-bg);
@@ -2418,6 +2535,58 @@
     </div>
   </section>
 
+  <!-- Team Section -->
+  <section id="team" class="team-section section">
+    <div class="container">
+      <div class="divider-label fade-up">Our Leadership</div>
+      <div class="section-header fade-up stagger-1">
+        <h2 class="section-title">Meet Our Team</h2>
+        <p class="section-subtitle">The people behind Verity Praxis—strategists, builders, and problem-solvers.</p>
+      </div>
+      <div class="team-grid">
+        <!-- Wade Odum -->
+        <div class="team-card fade-up stagger-1">
+          <div class="team-image">
+            <div class="team-silhouette">
+              <svg viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="35" r="20"/>
+                <ellipse cx="50" cy="85" rx="30" ry="25"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="team-name">Wade Odum</h3>
+          <div class="team-role">Founder</div>
+          <p class="team-bio">A results-driven leader with a background in sales, strategy, and execution. A family man and believer who values integrity, commitment, and service. A former MMA fighter and football player who understands resilience and teamwork firsthand. Outside of work, he's a musician at heart—blending creativity with structure to lead, inspire, and deliver meaningful impact.</p>
+        </div>
+
+        <!-- Jamien Sills -->
+        <div class="team-card fade-up stagger-2">
+          <div class="team-image">
+            <img src="assets/jamien-sills.jpg" alt="Jamien Sills">
+          </div>
+          <h3 class="team-name">Jamien Sills</h3>
+          <div class="team-role">Creative Visionary | Design Innovator | Storyteller</div>
+          <p class="team-bio">For over 35 years, shaping industries through design, problem-solving, and storytelling. From pioneering sneaker culture to global footwear manufacturing, to leading creative direction for brands that merge innovation with cultural relevance. Thrives at the intersection of creativity and strategy—where design solves problems and tells compelling stories that connect with people on a profound level.</p>
+        </div>
+
+        <!-- Bryan -->
+        <div class="team-card fade-up stagger-3">
+          <div class="team-image">
+            <div class="team-silhouette">
+              <svg viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="35" r="20"/>
+                <ellipse cx="50" cy="85" rx="30" ry="25"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="team-name">Bryan</h3>
+          <div class="team-role">Automation Manager</div>
+          <p class="team-bio">A systems-driven problem solver with a sharp eye for process, automation, and scale. Specializes in turning messy operations into clear, reliable workflows. Known for bridging technical execution with real-world business needs—building tools, integrations, and support systems that actually get used. Calm under pressure and detail-obsessed by nature, focusing on efficiency, clarity, and long-term impact.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Pricing Section -->
   <section id="pricing" class="pricing-section section">
     <div class="container">
@@ -2657,8 +2826,8 @@
       const themeToggle = document.getElementById('themeToggle');
       const html = document.documentElement;
       
-      // Check for saved theme preference or default to dark
-      const savedTheme = localStorage.getItem('theme') || 'dark';
+      // Check for saved theme preference or default to light
+      const savedTheme = localStorage.getItem('theme') || 'light';
       html.setAttribute('data-theme', savedTheme);
       
       if (themeToggle) {
