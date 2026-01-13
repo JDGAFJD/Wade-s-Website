@@ -48,6 +48,60 @@
       --container-max: 1200px;
     }
 
+    /* Light theme overrides */
+    [data-theme="light"] {
+      --dark-bg: #ffffff;
+      --dark-bg-elevated: #f8f9fa;
+      --dark-foreground: #141414;
+      --dark-muted: #6b7280;
+      --dark-border: #e5e5e5;
+    }
+
+    [data-theme="light"] .header {
+      background-color: rgba(255, 255, 255, 0.95);
+      border-bottom-color: var(--border);
+    }
+
+    [data-theme="light"] .header.scrolled {
+      background-color: rgba(255, 255, 255, 0.98);
+    }
+
+    [data-theme="light"] .hero-video-overlay {
+      background: 
+        linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0.95) 100%),
+        radial-gradient(ellipse at 20% 80%, rgba(19, 141, 233, 0.15) 0%, transparent 50%);
+    }
+
+    [data-theme="light"] .hero-bg-pattern {
+      background-image: 
+        linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+    }
+
+    [data-theme="light"] .logo {
+      color: var(--foreground);
+    }
+
+    [data-theme="light"] .nav-link {
+      color: var(--muted-foreground);
+    }
+
+    [data-theme="light"] .nav-link:hover {
+      color: var(--foreground);
+    }
+
+    [data-theme="light"] .nav-toggle span {
+      background-color: var(--foreground);
+    }
+
+    [data-theme="light"] .preloader {
+      background-color: #ffffff;
+    }
+
+    [data-theme="light"] .preloader-text {
+      color: var(--muted-foreground);
+    }
+
     html {
       scroll-behavior: smooth;
     }
@@ -60,6 +114,85 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
+    }
+
+    body.loading {
+      overflow: hidden;
+    }
+
+    /* ===== Preloader ===== */
+    .preloader {
+      position: fixed;
+      inset: 0;
+      background-color: var(--dark-bg);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    .preloader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .preloader-logo {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 32px;
+      animation: preloaderPulse 1.5s ease-in-out infinite;
+    }
+
+    .preloader-spinner {
+      width: 48px;
+      height: 48px;
+      position: relative;
+    }
+
+    .preloader-spinner::before,
+    .preloader-spinner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 3px solid transparent;
+    }
+
+    .preloader-spinner::before {
+      border-top-color: var(--primary);
+      animation: preloaderSpin 1s linear infinite;
+    }
+
+    .preloader-spinner::after {
+      border-right-color: rgba(19, 141, 233, 0.3);
+      animation: preloaderSpin 1.5s linear infinite reverse;
+    }
+
+    .preloader-text {
+      margin-top: 24px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--dark-muted);
+      animation: preloaderFade 1.5s ease-in-out infinite;
+    }
+
+    @keyframes preloaderSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes preloaderPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+    }
+
+    @keyframes preloaderFade {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
     }
 
     h1, h2, h3 {
@@ -381,16 +514,54 @@
     }
 
     .logo-icon {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, var(--primary), #0e6fb8);
-      border-radius: 8px;
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--dark-border);
+      color: var(--dark-foreground);
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
-      font-size: 18px;
-      color: white;
+      font-size: 20px;
+      transition: all 0.3s ease;
+      margin-left: 16px;
+    }
+
+    .theme-toggle:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      transform: scale(1.1);
+    }
+
+    .theme-toggle .sun-icon {
+      display: none;
+    }
+
+    .theme-toggle .moon-icon {
+      display: block;
+    }
+
+    [data-theme="light"] .theme-toggle {
+      background: rgba(0, 0, 0, 0.05);
+      border-color: var(--border);
+      color: var(--foreground);
+    }
+
+    [data-theme="light"] .theme-toggle .sun-icon {
+      display: block;
+    }
+
+    [data-theme="light"] .theme-toggle .moon-icon {
+      display: none;
     }
 
     .nav {
@@ -444,6 +615,36 @@
       overflow: hidden;
     }
 
+    .hero-video-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .hero-video-bg video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      opacity: 0.4;
+    }
+
+    .hero-video-overlay {
+      position: absolute;
+      inset: 0;
+      background: 
+        linear-gradient(180deg, rgba(15, 15, 15, 0.7) 0%, rgba(15, 15, 15, 0.5) 50%, rgba(15, 15, 15, 0.9) 100%),
+        radial-gradient(ellipse at 20% 80%, rgba(19, 141, 233, 0.2) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(19, 141, 233, 0.15) 0%, transparent 50%);
+      z-index: 1;
+    }
+
     .hero-bg {
       position: absolute;
       inset: 0;
@@ -461,7 +662,7 @@
         linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
       background-size: 60px 60px;
-      z-index: 1;
+      z-index: 2;
     }
 
     .hero .container {
@@ -1031,42 +1232,106 @@
       pointer-events: none;
     }
 
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
+    /* Testimonial Carousel */
+    .testimonial-carousel {
       position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .testimonial-track {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .testimonial-slide {
+      min-width: 100%;
+      padding: 0 20px;
+      box-sizing: border-box;
     }
 
     .testimonial-card {
-      padding: 48px;
+      padding: 60px;
       background-color: var(--dark-bg);
       border: 1px solid var(--dark-border);
       position: relative;
-      transition: all 0.4s ease;
-    }
-
-    .testimonial-card:hover {
-      border-color: var(--primary);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      border-radius: 8px;
     }
 
     .testimonial-quote {
-      font-size: 72px;
+      font-size: 100px;
       font-family: var(--font-serif);
       color: var(--primary);
-      opacity: 0.4;
-      line-height: 1;
-      margin-bottom: 24px;
+      opacity: 0.3;
+      line-height: 0.5;
+      margin-bottom: 40px;
     }
 
     .testimonial-text {
-      font-size: 16px;
-      color: var(--dark-muted);
-      line-height: 1.9;
-      margin-bottom: 32px;
+      font-size: 22px;
+      color: var(--dark-foreground);
+      line-height: 1.8;
+      margin-bottom: 40px;
       font-style: italic;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .carousel-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .carousel-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--dark-bg);
+      border: 1px solid var(--dark-border);
+      color: var(--dark-foreground);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .carousel-btn:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      transform: scale(1.1);
+    }
+
+    .carousel-dots {
+      display: flex;
+      gap: 12px;
+    }
+
+    .carousel-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--dark-border);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .carousel-dot.active {
+      background: var(--primary);
+      transform: scale(1.2);
+    }
+
+    .carousel-dot:hover {
+      background: var(--primary);
+      opacity: 0.7;
     }
 
     .testimonial-author {
@@ -1412,16 +1677,10 @@
     }
 
     .footer-brand-icon {
-      width: 36px;
-      height: 36px;
-      background: linear-gradient(135deg, var(--primary), #0e6fb8);
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 16px;
-      color: white;
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
     }
 
     .footer-tagline {
@@ -1642,14 +1901,21 @@
     }
   </style>
 </head>
-<body>
+<body class="loading">
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <img src="assets/logo.png" alt="Verity Praxis" class="preloader-logo">
+    <div class="preloader-spinner"></div>
+    <div class="preloader-text">Loading</div>
+  </div>
 
   <!-- Header -->
   <header class="header" id="header">
     <div class="container">
       <div class="header-inner">
         <a href="#" class="logo">
-          <div class="logo-icon">VP</div>
+          <img src="assets/logo.png" alt="Verity Praxis" class="logo-icon">
           Verity Praxis
         </a>
         <nav class="nav" id="nav">
@@ -1659,10 +1925,16 @@
           <a href="#pricing" class="nav-link link-underline">Pricing</a>
           <a href="#contact" class="nav-link link-underline">Contact</a>
         </nav>
-        <a href="#contact" class="btn header-cta">
-          Start Project
-          <span class="btn-arrow">→</span>
-        </a>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <a href="#contact" class="btn header-cta">
+            Start Project
+            <span class="btn-arrow">→</span>
+          </a>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <span class="moon-icon">🌙</span>
+            <span class="sun-icon">☀️</span>
+          </button>
+        </div>
         <button class="nav-toggle" aria-label="Toggle navigation" id="navToggle">
           <span></span>
           <span></span>
@@ -1674,7 +1946,12 @@
 
   <!-- Hero Section -->
   <section class="hero section-dark">
-    <div class="hero-bg"></div>
+    <div class="hero-video-bg">
+      <video autoplay muted loop playsinline>
+        <source src="assets/hero-bg.mp4" type="video/mp4">
+      </video>
+      <div class="hero-video-overlay"></div>
+    </div>
     <div class="hero-bg-pattern"></div>
     <div class="container">
       <div class="hero-grid">
@@ -1708,13 +1985,111 @@
           </div>
         </div>
         <div class="hero-image fade-up stagger-2">
-          <!-- Image placeholder: Add your hero image here -->
-          <div class="hero-image-placeholder">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-            </svg>
-            <span>Hero Image</span>
-          </div>
+          <!-- Growth SVG Illustration -->
+          <svg viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+            <!-- Background glow -->
+            <defs>
+              <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#138DE9" />
+                <stop offset="100%" stop-color="#0e6fb8" />
+              </linearGradient>
+              <linearGradient id="fadeGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stop-color="#138DE9" stop-opacity="0" />
+                <stop offset="100%" stop-color="#138DE9" stop-opacity="0.3" />
+              </linearGradient>
+              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="8" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+            
+            <!-- Grid lines -->
+            <g stroke="rgba(255,255,255,0.05)" stroke-width="1">
+              <line x1="50" y1="350" x2="450" y2="350" />
+              <line x1="50" y1="280" x2="450" y2="280" stroke-dasharray="4 4" />
+              <line x1="50" y1="210" x2="450" y2="210" stroke-dasharray="4 4" />
+              <line x1="50" y1="140" x2="450" y2="140" stroke-dasharray="4 4" />
+              <line x1="50" y1="70" x2="450" y2="70" stroke-dasharray="4 4" />
+            </g>
+            
+            <!-- Growth area fill -->
+            <path d="M80 320 L140 280 L200 290 L260 220 L320 180 L380 120 L440 80 L440 350 L80 350 Z" fill="url(#fadeGradient)" opacity="0.5">
+              <animate attributeName="opacity" values="0.3;0.6;0.3" dur="3s" repeatCount="indefinite" />
+            </path>
+            
+            <!-- Growth line -->
+            <path d="M80 320 L140 280 L200 290 L260 220 L320 180 L380 120 L440 80" stroke="url(#primaryGradient)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
+              <animate attributeName="stroke-dasharray" values="0 1000;1000 0" dur="2s" fill="freeze" />
+            </path>
+            
+            <!-- Data points -->
+            <g filter="url(#glow)">
+              <circle cx="80" cy="320" r="8" fill="#0f0f0f" stroke="#138DE9" stroke-width="3">
+                <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="140" cy="280" r="8" fill="#0f0f0f" stroke="#138DE9" stroke-width="3">
+                <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite" begin="0.2s" />
+              </circle>
+              <circle cx="200" cy="290" r="8" fill="#0f0f0f" stroke="#138DE9" stroke-width="3">
+                <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite" begin="0.4s" />
+              </circle>
+              <circle cx="260" cy="220" r="8" fill="#0f0f0f" stroke="#138DE9" stroke-width="3">
+                <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite" begin="0.6s" />
+              </circle>
+              <circle cx="320" cy="180" r="8" fill="#0f0f0f" stroke="#138DE9" stroke-width="3">
+                <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite" begin="0.8s" />
+              </circle>
+              <circle cx="380" cy="120" r="8" fill="#0f0f0f" stroke="#138DE9" stroke-width="3">
+                <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite" begin="1s" />
+              </circle>
+              <circle cx="440" cy="80" r="10" fill="#138DE9" stroke="#fff" stroke-width="2">
+                <animate attributeName="r" values="8;12;8" dur="1.5s" repeatCount="indefinite" />
+              </circle>
+            </g>
+            
+            <!-- Upward arrow at peak -->
+            <g transform="translate(440, 40)" filter="url(#glow)">
+              <path d="M0 20 L0 -5 M-8 5 L0 -5 L8 5" stroke="#138DE9" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <animate attributeName="transform" values="translate(0,0);translate(0,-5);translate(0,0)" dur="1.5s" repeatCount="indefinite" />
+              </path>
+            </g>
+            
+            <!-- Decorative elements -->
+            <g opacity="0.6">
+              <!-- Bar chart mini -->
+              <rect x="60" y="60" width="20" height="40" rx="2" fill="rgba(19,141,233,0.2)">
+                <animate attributeName="height" values="30;40;30" dur="2s" repeatCount="indefinite" />
+              </rect>
+              <rect x="85" y="50" width="20" height="50" rx="2" fill="rgba(19,141,233,0.3)">
+                <animate attributeName="height" values="40;50;40" dur="2s" repeatCount="indefinite" begin="0.3s" />
+              </rect>
+              <rect x="110" y="35" width="20" height="65" rx="2" fill="rgba(19,141,233,0.4)">
+                <animate attributeName="height" values="55;65;55" dur="2s" repeatCount="indefinite" begin="0.6s" />
+              </rect>
+              
+              <!-- Gear icon -->
+              <g transform="translate(420, 320)">
+                <circle r="15" fill="none" stroke="rgba(19,141,233,0.3)" stroke-width="2">
+                  <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="10s" repeatCount="indefinite" />
+                </circle>
+                <circle r="6" fill="rgba(19,141,233,0.2)" />
+              </g>
+              
+              <!-- Connection dots -->
+              <circle cx="350" cy="300" r="3" fill="#138DE9" opacity="0.5">
+                <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="380" cy="280" r="2" fill="#138DE9" opacity="0.4">
+                <animate attributeName="opacity" values="0.2;0.6;0.2" dur="2s" repeatCount="indefinite" begin="0.5s" />
+              </circle>
+              <circle cx="400" cy="310" r="4" fill="#138DE9" opacity="0.3">
+                <animate attributeName="opacity" values="0.2;0.5;0.2" dur="2s" repeatCount="indefinite" begin="1s" />
+              </circle>
+            </g>
+          </svg>
         </div>
       </div>
     </div>
@@ -1831,13 +2206,7 @@
 
       <div class="work-item fade-up">
         <div class="work-image">
-          <!-- Image placeholder: public/images/work-ecommerce.jpg -->
-          <div class="hero-image-placeholder">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" style="width: 48px; height: 48px;">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-            </svg>
-            <span>E-commerce Case Study</span>
-          </div>
+          <img src="assets/case-study-1.jpg" alt="E-commerce Analytics Dashboard" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
         </div>
         <div class="work-content">
           <div class="work-category">E-commerce</div>
@@ -1871,13 +2240,7 @@
 
       <div class="work-item fade-up">
         <div class="work-image">
-          <!-- Image placeholder: public/images/work-crm.jpg -->
-          <div class="hero-image-placeholder">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" style="width: 48px; height: 48px;">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-            </svg>
-            <span>CRM Case Study</span>
-          </div>
+          <img src="assets/case-study-2.jpg" alt="CRM Automation Workflow" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
         </div>
         <div class="work-content">
           <div class="work-category">B2B SaaS</div>
@@ -1911,13 +2274,7 @@
 
       <div class="work-item fade-up">
         <div class="work-image">
-          <!-- Image placeholder: public/images/work-social.jpg -->
-          <div class="hero-image-placeholder">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" style="width: 48px; height: 48px;">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-            </svg>
-            <span>Social Media Case Study</span>
-          </div>
+          <img src="assets/case-study-3.jpg" alt="Data Infrastructure Server Room" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
         </div>
         <div class="work-content">
           <div class="work-category">Brand Launch</div>
@@ -1985,46 +2342,77 @@
   </section>
 
   <!-- Testimonials Section -->
-  <section class="testimonials-section section section-dark-elevated">
+  <section class="testimonials-section section section-dark-elevated" id="testimonials">
     <div class="container">
       <div class="divider-label fade-up">Client Testimonials</div>
       <div class="section-header fade-up stagger-1">
         <h2 class="section-title">What They Say</h2>
         <p class="section-subtitle" style="color: var(--dark-muted);">Don't take our word for it—hear from our clients.</p>
       </div>
-      <div class="testimonials-grid">
-        <div class="testimonial-card fade-up stagger-1">
-          <div class="testimonial-quote">"</div>
-          <p class="testimonial-text">Verity Praxis transformed our digital presence completely. Our revenue has tripled since we started working together, and the ROI has been incredible.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">JD</div>
-            <div>
-              <div class="testimonial-name">Jennifer Davis</div>
-              <div class="testimonial-role">CEO, StyleHouse Retail</div>
+      <div class="testimonial-carousel fade-up stagger-2">
+        <div class="testimonial-track" id="testimonialTrack">
+          <div class="testimonial-slide">
+            <div class="testimonial-card">
+              <div class="testimonial-quote">"</div>
+              <p class="testimonial-text">Verity Praxis transformed our digital presence completely. Our revenue has tripled since we started working together, and the ROI has been incredible.</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">JD</div>
+                <div>
+                  <div class="testimonial-name">Jennifer Davis</div>
+                  <div class="testimonial-role">CEO, StyleHouse Retail</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-slide">
+            <div class="testimonial-card">
+              <div class="testimonial-quote">"</div>
+              <p class="testimonial-text">The automation systems they built for us saved our team 20+ hours per week. We can finally focus on what matters—growing the business.</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">MC</div>
+                <div>
+                  <div class="testimonial-name">Michael Chen</div>
+                  <div class="testimonial-role">Founder, TechFlow Solutions</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-slide">
+            <div class="testimonial-card">
+              <div class="testimonial-quote">"</div>
+              <p class="testimonial-text">Their strategic insights were game-changing. They didn't just execute—they helped us rethink our entire approach to digital marketing.</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">SW</div>
+                <div>
+                  <div class="testimonial-name">Sarah Williams</div>
+                  <div class="testimonial-role">CMO, GreenLeaf Wellness</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-slide">
+            <div class="testimonial-card">
+              <div class="testimonial-quote">"</div>
+              <p class="testimonial-text">From strategy to execution, they delivered beyond expectations. Our customer acquisition cost dropped 60% while conversions doubled.</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">RK</div>
+                <div>
+                  <div class="testimonial-name">Robert Kim</div>
+                  <div class="testimonial-role">VP Marketing, Nexus Analytics</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="testimonial-card fade-up stagger-2">
-          <div class="testimonial-quote">"</div>
-          <p class="testimonial-text">The automation systems they built for us saved our team 20+ hours per week. We can finally focus on what matters—growing the business.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">MC</div>
-            <div>
-              <div class="testimonial-name">Michael Chen</div>
-              <div class="testimonial-role">Founder, TechFlow Solutions</div>
-            </div>
+        <div class="carousel-controls">
+          <button class="carousel-btn" id="prevBtn" aria-label="Previous testimonial">←</button>
+          <div class="carousel-dots" id="carouselDots">
+            <button class="carousel-dot active" data-index="0" aria-label="Go to slide 1"></button>
+            <button class="carousel-dot" data-index="1" aria-label="Go to slide 2"></button>
+            <button class="carousel-dot" data-index="2" aria-label="Go to slide 3"></button>
+            <button class="carousel-dot" data-index="3" aria-label="Go to slide 4"></button>
           </div>
-        </div>
-        <div class="testimonial-card fade-up stagger-3">
-          <div class="testimonial-quote">"</div>
-          <p class="testimonial-text">Their strategic insights were game-changing. They didn't just execute—they helped us rethink our entire approach to digital marketing.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">SW</div>
-            <div>
-              <div class="testimonial-name">Sarah Williams</div>
-              <div class="testimonial-role">CMO, GreenLeaf Wellness</div>
-            </div>
-          </div>
+          <button class="carousel-btn" id="nextBtn" aria-label="Next testimonial">→</button>
         </div>
       </div>
     </div>
@@ -2208,7 +2596,7 @@
       <div class="footer-grid">
         <div>
           <div class="footer-brand">
-            <div class="footer-brand-icon">VP</div>
+            <img src="assets/logo.png" alt="Verity Praxis" class="footer-brand-icon">
             Verity Praxis
           </div>
           <p class="footer-tagline">We align brand positioning, go-to-market strategy, marketing systems, automation, and secure data foundations to help businesses scale with clarity and control.</p>
@@ -2252,7 +2640,37 @@
 
   <!-- JavaScript for Animations -->
   <script>
+    // Preloader
+    window.addEventListener('load', function() {
+      const preloader = document.getElementById('preloader');
+      const body = document.body;
+      
+      // Minimum display time for preloader (500ms)
+      setTimeout(() => {
+        preloader.classList.add('hidden');
+        body.classList.remove('loading');
+      }, 800);
+    });
+
     document.addEventListener('DOMContentLoaded', function() {
+      // Theme Toggle
+      const themeToggle = document.getElementById('themeToggle');
+      const html = document.documentElement;
+      
+      // Check for saved theme preference or default to dark
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      html.setAttribute('data-theme', savedTheme);
+      
+      if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+          const currentTheme = html.getAttribute('data-theme');
+          const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+          
+          html.setAttribute('data-theme', newTheme);
+          localStorage.setItem('theme', newTheme);
+        });
+      }
+
       // Header scroll effect
       const header = document.getElementById('header');
       let lastScroll = 0;
@@ -2419,14 +2837,137 @@
         });
       });
 
-      // Parallax effect for hero background
+      // Enhanced Parallax Effects
+      const parallaxElements = [];
+      
+      // Add parallax to various sections
+      document.querySelectorAll('.section').forEach((section, index) => {
+        const bgOverlay = document.createElement('div');
+        bgOverlay.className = 'parallax-bg';
+        bgOverlay.style.cssText = `
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(ellipse at ${index % 2 === 0 ? '20%' : '80%'} 50%, 
+            rgba(19, 141, 233, 0.05) 0%, transparent 60%);
+          pointer-events: none;
+          z-index: 0;
+        `;
+        if (section.style.position !== 'relative') {
+          section.style.position = 'relative';
+        }
+        section.insertBefore(bgOverlay, section.firstChild);
+        parallaxElements.push({ element: bgOverlay, speed: 0.1 + (index * 0.02) });
+      });
+
       window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
-        const heroBg = document.querySelector('.hero-bg');
-        if (heroBg && scrolled < window.innerHeight) {
-          heroBg.style.transform = `translateY(${scrolled * 0.3}px)`;
+        
+        // Hero video parallax
+        const heroVideo = document.querySelector('.hero-video-bg video');
+        if (heroVideo && scrolled < window.innerHeight) {
+          heroVideo.style.transform = `translate(-50%, -50%) scale(${1 + scrolled * 0.0003})`;
+          heroVideo.style.opacity = Math.max(0.2, 0.4 - scrolled * 0.0003);
         }
+
+        // Hero pattern parallax
+        const heroPattern = document.querySelector('.hero-bg-pattern');
+        if (heroPattern && scrolled < window.innerHeight) {
+          heroPattern.style.transform = `translateY(${scrolled * 0.2}px)`;
+        }
+
+        // Section parallax backgrounds
+        parallaxElements.forEach(({ element, speed }) => {
+          const rect = element.parentElement.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            const yPos = (rect.top - window.innerHeight / 2) * speed;
+            element.style.transform = `translateY(${yPos}px)`;
+          }
+        });
       });
+
+      // Testimonial Carousel
+      const track = document.getElementById('testimonialTrack');
+      const dots = document.querySelectorAll('.carousel-dot');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      let currentSlide = 0;
+      const totalSlides = 4;
+      let autoRotateInterval;
+
+      function goToSlide(index) {
+        currentSlide = index;
+        if (currentSlide < 0) currentSlide = totalSlides - 1;
+        if (currentSlide >= totalSlides) currentSlide = 0;
+        
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentSlide);
+        });
+      }
+
+      function nextSlide() {
+        goToSlide(currentSlide + 1);
+      }
+
+      function prevSlide() {
+        goToSlide(currentSlide - 1);
+      }
+
+      function startAutoRotate() {
+        autoRotateInterval = setInterval(nextSlide, 5000);
+      }
+
+      function stopAutoRotate() {
+        clearInterval(autoRotateInterval);
+      }
+
+      // Event listeners
+      if (prevBtn) prevBtn.addEventListener('click', () => { stopAutoRotate(); prevSlide(); startAutoRotate(); });
+      if (nextBtn) nextBtn.addEventListener('click', () => { stopAutoRotate(); nextSlide(); startAutoRotate(); });
+      
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          stopAutoRotate();
+          goToSlide(index);
+          startAutoRotate();
+        });
+      });
+
+      // Pause on hover
+      const carousel = document.querySelector('.testimonial-carousel');
+      if (carousel) {
+        carousel.addEventListener('mouseenter', stopAutoRotate);
+        carousel.addEventListener('mouseleave', startAutoRotate);
+      }
+
+      // Start auto-rotation
+      startAutoRotate();
+
+      // Touch/swipe support for carousel
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      if (track) {
+        track.addEventListener('touchstart', (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+          stopAutoRotate();
+        }, { passive: true });
+
+        track.addEventListener('touchend', (e) => {
+          touchEndX = e.changedTouches[0].screenX;
+          const swipeDistance = touchStartX - touchEndX;
+          
+          if (Math.abs(swipeDistance) > 50) {
+            if (swipeDistance > 0) {
+              nextSlide();
+            } else {
+              prevSlide();
+            }
+          }
+          startAutoRotate();
+        }, { passive: true });
+      }
     });
   </script>
 
