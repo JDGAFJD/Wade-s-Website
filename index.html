@@ -140,8 +140,8 @@
     }
 
     .preloader-logo {
-      width: 80px;
-      height: 80px;
+      width: 200px;
+      height: 200px;
       margin-bottom: 32px;
       animation: preloaderPulse 1.5s ease-in-out infinite;
     }
@@ -172,10 +172,11 @@
     }
 
     .preloader-text {
-      margin-top: 24px;
-      font-size: 14px;
+      margin-top: 32px;
+      font-size: 16px;
+      font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.3em;
       color: var(--dark-muted);
       animation: preloaderFade 1.5s ease-in-out infinite;
     }
@@ -514,8 +515,8 @@
     }
 
     .logo-icon {
-      width: 56px;
-      height: 56px;
+      width: 70px;
+      height: 70px;
       object-fit: contain;
     }
 
@@ -2088,11 +2089,11 @@
           </div>
           <div class="hero-stats fade-up stagger-4">
             <div class="hero-stat">
-              <div class="hero-stat-value">150+</div>
+              <div class="hero-stat-value">30+</div>
               <div class="hero-stat-label">Projects Delivered</div>
             </div>
             <div class="hero-stat">
-              <div class="hero-stat-value">$50M+</div>
+              <div class="hero-stat-value">$250K+</div>
               <div class="hero-stat-label">Revenue Generated</div>
             </div>
             <div class="hero-stat">
@@ -2123,6 +2124,10 @@
               </filter>
             </defs>
             
+            <!-- Axis labels -->
+            <text x="25" y="360" fill="rgba(255,255,255,0.6)" font-size="12" font-family="var(--font-sans)" text-anchor="middle">Time</text>
+            <text x="25" y="200" fill="rgba(255,255,255,0.6)" font-size="12" font-family="var(--font-sans)" text-anchor="middle" transform="rotate(-90, 25, 200)">Growth</text>
+            
             <!-- Grid lines -->
             <g stroke="rgba(255,255,255,0.05)" stroke-width="1">
               <line x1="50" y1="350" x2="450" y2="350" />
@@ -2142,29 +2147,55 @@
               <animate attributeName="stroke-dasharray" values="0 1000;1000 0" dur="2s" fill="freeze" />
             </path>
             
-            <!-- Data points -->
+            <!-- Data points with hover effect -->
+            <style>
+              .data-point { cursor: pointer; transition: transform 0.2s ease; }
+              .data-point:hover { transform: scale(1.3); }
+              .data-point:hover circle { fill: #138DE9 !important; }
+            </style>
             <g filter="url(#glow)">
-              <circle cx="80" cy="320" r="8" fill="#0f0f0f" stroke="#138DE9" stroke-width="3">
-                <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite" />
-              </circle>
-              <circle cx="140" cy="280" r="8" fill="#0f0f0f" stroke="#138DE9" stroke-width="3">
-                <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite" begin="0.2s" />
-              </circle>
-              <circle cx="200" cy="290" r="8" fill="#0f0f0f" stroke="#138DE9" stroke-width="3">
-                <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite" begin="0.4s" />
-              </circle>
-              <circle cx="260" cy="220" r="8" fill="#0f0f0f" stroke="#138DE9" stroke-width="3">
-                <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite" begin="0.6s" />
-              </circle>
-              <circle cx="320" cy="180" r="8" fill="#0f0f0f" stroke="#138DE9" stroke-width="3">
-                <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite" begin="0.8s" />
-              </circle>
-              <circle cx="380" cy="120" r="8" fill="#0f0f0f" stroke="#138DE9" stroke-width="3">
-                <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite" begin="1s" />
-              </circle>
-              <circle cx="440" cy="80" r="10" fill="#138DE9" stroke="#fff" stroke-width="2">
-                <animate attributeName="r" values="8;12;8" dur="1.5s" repeatCount="indefinite" />
-              </circle>
+              <g class="data-point">
+                <circle cx="80" cy="320" r="8" fill="#0f0f0f" stroke="#138DE9" stroke-width="3">
+                  <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite" />
+                </circle>
+                <title>Q1: Starting Point</title>
+              </g>
+              <g class="data-point">
+                <circle cx="140" cy="280" r="8" fill="#0f0f0f" stroke="#138DE9" stroke-width="3">
+                  <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite" begin="0.2s" />
+                </circle>
+                <title>Q2: Initial Growth</title>
+              </g>
+              <g class="data-point">
+                <circle cx="200" cy="290" r="8" fill="#0f0f0f" stroke="#138DE9" stroke-width="3">
+                  <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite" begin="0.4s" />
+                </circle>
+                <title>Q3: Optimization</title>
+              </g>
+              <g class="data-point">
+                <circle cx="260" cy="220" r="8" fill="#0f0f0f" stroke="#138DE9" stroke-width="3">
+                  <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite" begin="0.6s" />
+                </circle>
+                <title>Q4: Scaling</title>
+              </g>
+              <g class="data-point">
+                <circle cx="320" cy="180" r="8" fill="#0f0f0f" stroke="#138DE9" stroke-width="3">
+                  <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite" begin="0.8s" />
+                </circle>
+                <title>Q5: Acceleration</title>
+              </g>
+              <g class="data-point">
+                <circle cx="380" cy="120" r="8" fill="#0f0f0f" stroke="#138DE9" stroke-width="3">
+                  <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite" begin="1s" />
+                </circle>
+                <title>Q6: Expansion</title>
+              </g>
+              <g class="data-point">
+                <circle cx="440" cy="80" r="10" fill="#138DE9" stroke="#fff" stroke-width="2">
+                  <animate attributeName="r" values="8;12;8" dur="1.5s" repeatCount="indefinite" />
+                </circle>
+                <title>Current: Peak Performance</title>
+              </g>
             </g>
             
             <!-- Upward arrow at peak -->
@@ -2293,19 +2324,19 @@
       </div>
       <div class="proof-grid">
         <div class="proof-card fade-up stagger-1">
-          <div class="proof-value">340<span class="percent">%</span></div>
+          <div class="proof-value">48<span class="percent">%</span></div>
           <div class="proof-label">Avg. ROI Increase</div>
         </div>
         <div class="proof-card fade-up stagger-2">
-          <div class="proof-value">67<span class="percent">%</span></div>
+          <div class="proof-value">32<span class="percent">%</span></div>
           <div class="proof-label">Reduction in CAC</div>
         </div>
         <div class="proof-card fade-up stagger-3">
-          <div class="proof-value">4.2x</div>
+          <div class="proof-value">2.1x</div>
           <div class="proof-label">Revenue Growth</div>
         </div>
         <div class="proof-card fade-up stagger-4">
-          <div class="proof-value">85<span class="percent">%</span></div>
+          <div class="proof-value">45<span class="percent">%</span></div>
           <div class="proof-label">Time Saved</div>
         </div>
       </div>
@@ -2340,11 +2371,11 @@
           </div>
           <div class="work-stats">
             <div class="work-stat">
-              <div class="work-stat-value">+285%</div>
+              <div class="work-stat-value">+78%</div>
               <div class="work-stat-label">Online Revenue</div>
             </div>
             <div class="work-stat">
-              <div class="work-stat-value">-45%</div>
+              <div class="work-stat-value">-23%</div>
               <div class="work-stat-label">Cart Abandonment</div>
             </div>
           </div>
@@ -2408,11 +2439,11 @@
           </div>
           <div class="work-stats">
             <div class="work-stat">
-              <div class="work-stat-value">2.1M</div>
+              <div class="work-stat-value">+28%</div>
               <div class="work-stat-label">Impressions/Month</div>
             </div>
             <div class="work-stat">
-              <div class="work-stat-value">+520%</div>
+              <div class="work-stat-value">+36%</div>
               <div class="work-stat-label">Engagement Rate</div>
             </div>
           </div>
@@ -2547,12 +2578,7 @@
         <!-- Wade Odum -->
         <div class="team-card fade-up stagger-1">
           <div class="team-image">
-            <div class="team-silhouette">
-              <svg viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="35" r="20"/>
-                <ellipse cx="50" cy="85" rx="30" ry="25"/>
-              </svg>
-            </div>
+            <img src="assets/wade-odum.jpg" alt="Wade Odum">
           </div>
           <h3 class="team-name">Wade Odum</h3>
           <div class="team-role">Founder</div>
@@ -2565,7 +2591,7 @@
             <img src="assets/jamien-sills.jpg" alt="Jamien Sills">
           </div>
           <h3 class="team-name">Jamien Sills</h3>
-          <div class="team-role">Creative Visionary | Design Innovator | Storyteller</div>
+          <div class="team-role">Director of Design Innovation</div>
           <p class="team-bio">For over 35 years, shaping industries through design, problem-solving, and storytelling. From pioneering sneaker culture to global footwear manufacturing, to leading creative direction for brands that merge innovation with cultural relevance. Thrives at the intersection of creativity and strategy—where design solves problems and tells compelling stories that connect with people on a profound level.</p>
         </div>
 
@@ -2580,7 +2606,7 @@
             </div>
           </div>
           <h3 class="team-name">Bryan</h3>
-          <div class="team-role">Automation Manager</div>
+          <div class="team-role">Automation Director</div>
           <p class="team-bio">A systems-driven problem solver with a sharp eye for process, automation, and scale. Specializes in turning messy operations into clear, reliable workflows. Known for bridging technical execution with real-world business needs—building tools, integrations, and support systems that actually get used. Calm under pressure and detail-obsessed by nature, focusing on efficiency, clarity, and long-term impact.</p>
         </div>
       </div>
