@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fashion Retailer Transformation | Verity Praxis Case Study</title>
+    <meta name="description" content="How Verity Praxis helped a mid-size fashion retailer achieve 78% revenue growth through digital transformation." />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      
+      :root {
+        --background: #0f0f0f;
+        --foreground: #fafafa;
+        --muted: #1a1a1a;
+        --muted-foreground: #999999;
+        --border: #2e2e2e;
+        --primary: #138DE9;
+        --primary-hover: #0e6fb8;
+        --font-serif: 'Playfair Display', Georgia, serif;
+        --font-sans: 'Inter', system-ui, sans-serif;
+      }
+      
+      :root.light {
+        --background: #fafafa;
+        --foreground: #0f0f0f;
+        --muted: #f0f0f0;
+        --muted-foreground: #666666;
+        --border: #e0e0e0;
+      }
+      
+      html { scroll-behavior: smooth; }
+      
+      body {
+        font-family: var(--font-sans);
+        background-color: var(--background);
+        color: var(--foreground);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+      
+      h1, h2, h3 { font-family: var(--font-serif); font-weight: 500; line-height: 1.2; }
+      a { text-decoration: none; color: inherit; }
+      img { max-width: 100%; height: auto; display: block; }
+      
+      .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+      
+      /* Header */
+      .header {
+        position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+        background: rgba(15, 15, 15, 0.9);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        transition: background 0.3s ease;
+      }
+      :root.light .header { background: rgba(250, 250, 250, 0.9); }
+      
+      .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+      .logo { display: flex; align-items: center; }
+      .logo-icon { height: 70px; width: auto; }
+      
+      .header-actions { display: flex; align-items: center; gap: 16px; }
+      
+      .theme-toggle {
+        background: var(--muted);
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .theme-toggle:hover { background: var(--primary); border-color: var(--primary); }
+      .theme-toggle svg { width: 20px; height: 20px; fill: var(--foreground); }
+      :root.light .theme-toggle svg { fill: var(--foreground); }
+      .theme-toggle .sun-icon { display: none; }
+      .theme-toggle .moon-icon { display: block; }
+      :root.light .theme-toggle .sun-icon { display: block; }
+      :root.light .theme-toggle .moon-icon { display: none; }
+      
+      .btn {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 12px 24px;
+        background: var(--primary);
+        color: white;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+      .btn:hover { background: var(--primary-hover); transform: translateY(-2px); }
+      .btn-outline {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--foreground);
+      }
+      .btn-outline:hover { border-color: var(--primary); color: var(--primary); background: transparent; }
+      
+      /* Hero */
+      .case-hero {
+        padding: 180px 0 100px;
+        background: linear-gradient(135deg, var(--background) 0%, var(--muted) 100%);
+        position: relative;
+        overflow: hidden;
+      }
+      .case-hero::before {
+        content: '';
+        position: absolute;
+        top: 0; right: 0;
+        width: 60%;
+        height: 100%;
+        background: url('assets/case-study-1.jpg') center/cover;
+        opacity: 0.15;
+        mask-image: linear-gradient(to left, black, transparent);
+        -webkit-mask-image: linear-gradient(to left, black, transparent);
+      }
+      .case-hero-content { position: relative; z-index: 1; max-width: 700px; }
+      .case-category {
+        display: inline-block;
+        padding: 8px 16px;
+        background: var(--primary);
+        color: white;
+        border-radius: 100px;
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 24px;
+      }
+      .case-title { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 24px; }
+      .case-subtitle { font-size: 1.25rem; color: var(--muted-foreground); margin-bottom: 40px; }
+      
+      /* Stats */
+      .stats-bar {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 32px;
+        padding: 48px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .stat { text-align: center; }
+      .stat-value { font-family: var(--font-serif); font-size: 3rem; color: var(--primary); margin-bottom: 8px; }
+      .stat-label { font-size: 14px; color: var(--muted-foreground); text-transform: uppercase; letter-spacing: 1px; }
+      
+      /* Content */
+      .case-content { padding: 80px 0; }
+      .content-grid { display: grid; grid-template-columns: 1fr 300px; gap: 80px; }
+      @media (max-width: 900px) { .content-grid { grid-template-columns: 1fr; } }
+      
+      .content-main h2 { font-size: 2rem; margin: 48px 0 24px; }
+      .content-main h2:first-child { margin-top: 0; }
+      .content-main p { color: var(--muted-foreground); margin-bottom: 24px; font-size: 1.1rem; }
+      .content-main ul { margin-bottom: 24px; padding-left: 24px; }
+      .content-main li { color: var(--muted-foreground); margin-bottom: 12px; font-size: 1.1rem; }
+      
+      .sidebar { position: sticky; top: 120px; height: fit-content; }
+      .sidebar-card {
+        background: var(--muted);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 32px;
+        margin-bottom: 24px;
+      }
+      .sidebar-title { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted-foreground); margin-bottom: 16px; }
+      .sidebar-list { list-style: none; }
+      .sidebar-list li { padding: 12px 0; border-bottom: 1px solid var(--border); color: var(--foreground); }
+      .sidebar-list li:last-child { border-bottom: none; }
+      
+      /* Process */
+      .process-timeline { margin: 48px 0; }
+      .timeline-item {
+        display: grid;
+        grid-template-columns: 60px 1fr;
+        gap: 24px;
+        padding-bottom: 48px;
+        position: relative;
+      }
+      .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: 29px;
+        top: 60px;
+        bottom: 0;
+        width: 2px;
+        background: var(--border);
+      }
+      .timeline-item:last-child::before { display: none; }
+      .timeline-number {
+        width: 60px;
+        height: 60px;
+        background: var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-serif);
+        font-size: 1.5rem;
+        color: white;
+        position: relative;
+        z-index: 1;
+      }
+      .timeline-content h3 { font-size: 1.5rem; margin-bottom: 12px; }
+      .timeline-content p { color: var(--muted-foreground); }
+      
+      /* Image */
+      .case-image {
+        margin: 48px 0;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+      .case-image img { width: 100%; height: auto; }
+      
+      /* CTA */
+      .case-cta {
+        background: linear-gradient(135deg, var(--muted) 0%, var(--background) 100%);
+        padding: 100px 0;
+        text-align: center;
+        border-top: 1px solid var(--border);
+      }
+      .cta-title { font-size: 2.5rem; margin-bottom: 16px; }
+      .cta-subtitle { color: var(--muted-foreground); margin-bottom: 32px; font-size: 1.25rem; }
+      .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+      
+      /* Footer */
+      .footer {
+        background: var(--muted);
+        padding: 48px 0;
+        border-top: 1px solid var(--border);
+        text-align: center;
+      }
+      .footer-logo { height: 50px; margin: 0 auto 24px; }
+      .footer-text { color: var(--muted-foreground); font-size: 14px; }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <div class="header-inner">
+          <a href="verity-praxis.html" class="logo">
+            <img src="assets/logo-vp-2.png" alt="Verity Praxis" class="logo-icon" />
+          </a>
+          <div class="header-actions">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+              <svg class="sun-icon" viewBox="0 0 24 24"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zM12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+              <svg class="moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+            </button>
+            <a href="verity-praxis.html#work" class="btn btn-outline">← Back to Cases</a>
+            <a href="verity-praxis.html#contact" class="btn">Start Your Project</a>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <!-- Hero -->
+    <section class="case-hero">
+      <div class="container">
+        <div class="case-hero-content">
+          <span class="case-category">E-commerce</span>
+          <h1 class="case-title">Fashion Retailer Transformation</h1>
+          <p class="case-subtitle">Complete digital overhaul for a mid-size fashion retailer, including new e-commerce platform, marketing automation, and customer journey optimization.</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Stats -->
+    <section class="container">
+      <div class="stats-bar">
+        <div class="stat">
+          <div class="stat-value">+78%</div>
+          <div class="stat-label">Online Revenue</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">-23%</div>
+          <div class="stat-label">Cart Abandonment</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">4.2x</div>
+          <div class="stat-label">Email ROI</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">6 mo</div>
+          <div class="stat-label">Time to Results</div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Content -->
+    <section class="case-content">
+      <div class="container">
+        <div class="content-grid">
+          <div class="content-main">
+            <h2>The Challenge</h2>
+            <p>StyleHouse, a mid-size fashion retailer with 12 physical locations, was struggling to compete in an increasingly digital marketplace. Their legacy e-commerce platform was outdated, conversion rates were declining, and they had no cohesive strategy for engaging customers across channels.</p>
+            <p>Key pain points included:</p>
+            <ul>
+              <li>Outdated e-commerce platform with poor mobile experience</li>
+              <li>No marketing automation or personalization</li>
+              <li>Siloed customer data across systems</li>
+              <li>High cart abandonment rate of 78%</li>
+              <li>Declining foot traffic with no online-to-offline strategy</li>
+            </ul>
+            
+            <div class="case-image">
+              <img src="assets/case-study-1.jpg" alt="StyleHouse E-commerce Dashboard" />
+            </div>
+            
+            <h2>Our Approach</h2>
+            <p>We developed a comprehensive digital transformation strategy that addressed both immediate pain points and long-term growth objectives. Our approach combined platform modernization with data-driven marketing automation.</p>
+            
+            <div class="process-timeline">
+              <div class="timeline-item">
+                <div class="timeline-number">1</div>
+                <div class="timeline-content">
+                  <h3>Audit & Analysis</h3>
+                  <p>Conducted a comprehensive audit of existing systems, customer data, and competitive landscape. Identified key friction points in the customer journey and opportunities for automation.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-number">2</div>
+                <div class="timeline-content">
+                  <h3>Platform Build</h3>
+                  <p>Migrated to a modern headless e-commerce architecture with mobile-first design. Implemented real-time inventory sync across all 12 locations.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-number">3</div>
+                <div class="timeline-content">
+                  <h3>Marketing Automation</h3>
+                  <p>Built automated email flows for abandoned carts, post-purchase sequences, and personalized product recommendations based on browsing behavior.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-number">4</div>
+                <div class="timeline-content">
+                  <h3>Optimization</h3>
+                  <p>Continuous A/B testing and refinement of conversion funnels, email campaigns, and customer segments to maximize ROI.</p>
+                </div>
+              </div>
+            </div>
+            
+            <h2>The Results</h2>
+            <p>Within six months of launch, StyleHouse saw transformative results across all key metrics. The new platform and automation systems created a sustainable competitive advantage that continues to drive growth.</p>
+            <ul>
+              <li><strong>78% increase in online revenue</strong> — driven by improved UX and personalization</li>
+              <li><strong>23% reduction in cart abandonment</strong> — through targeted recovery campaigns</li>
+              <li><strong>4.2x email marketing ROI</strong> — from automated, behavior-triggered campaigns</li>
+              <li><strong>35% increase in average order value</strong> — via intelligent product recommendations</li>
+              <li><strong>42% improvement in customer lifetime value</strong> — through loyalty program integration</li>
+            </ul>
+            
+            <h2>Client Testimonial</h2>
+            <blockquote style="border-left: 4px solid var(--primary); padding-left: 24px; margin: 32px 0; font-style: italic; font-size: 1.25rem;">
+              "Verity Praxis transformed our digital presence completely. Our revenue has tripled since we started working together, and the ROI has been incredible. They didn't just build us a website—they gave us a complete system for growth."
+              <footer style="margin-top: 16px; font-style: normal; font-size: 1rem; color: var(--muted-foreground);">— Jennifer Davis, CEO, StyleHouse Retail</footer>
+            </blockquote>
+          </div>
+          
+          <aside class="sidebar">
+            <div class="sidebar-card">
+              <div class="sidebar-title">Client</div>
+              <ul class="sidebar-list">
+                <li>StyleHouse Retail</li>
+              </ul>
+            </div>
+            <div class="sidebar-card">
+              <div class="sidebar-title">Industry</div>
+              <ul class="sidebar-list">
+                <li>Fashion & Apparel</li>
+                <li>E-commerce</li>
+              </ul>
+            </div>
+            <div class="sidebar-card">
+              <div class="sidebar-title">Services</div>
+              <ul class="sidebar-list">
+                <li>E-commerce Platform</li>
+                <li>Marketing Automation</li>
+                <li>Customer Journey Mapping</li>
+                <li>Data Integration</li>
+              </ul>
+            </div>
+            <div class="sidebar-card">
+              <div class="sidebar-title">Timeline</div>
+              <ul class="sidebar-list">
+                <li>6 Months</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+    
+    <!-- CTA -->
+    <section class="case-cta">
+      <div class="container">
+        <h2 class="cta-title">Ready for Your Transformation?</h2>
+        <p class="cta-subtitle">Let's discuss how we can drive similar results for your business.</p>
+        <div class="cta-buttons">
+          <a href="verity-praxis.html#contact" class="btn">Book Discovery Call</a>
+          <a href="verity-praxis.html#work" class="btn btn-outline">View More Cases</a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <img src="assets/logo-vp-2.png" alt="Verity Praxis" class="footer-logo" />
+        <p class="footer-text">© 2025 Verity Praxis. All rights reserved.</p>
+      </div>
+    </footer>
+    
+    <script>
+      // Theme Toggle with Cookie Persistence
+      const themeToggle = document.getElementById('themeToggle');
+      const root = document.documentElement;
+      
+      function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+        return null;
+      }
+      
+      function setCookie(name, value, days) {
+        const expires = new Date(Date.now() + days * 864e5).toUTCString();
+        document.cookie = `${name}=${value}; expires=${expires}; path=/; SameSite=Lax`;
+      }
+      
+      // Initialize theme from cookie
+      const savedTheme = getCookie('vp-theme');
+      if (savedTheme === 'light') {
+        root.classList.add('light');
+      }
+      
+      themeToggle.addEventListener('click', () => {
+        root.classList.toggle('light');
+        const isLight = root.classList.contains('light');
+        setCookie('vp-theme', isLight ? 'light' : 'dark', 365);
+      });
+    </script>
+  </body>
+</html>
