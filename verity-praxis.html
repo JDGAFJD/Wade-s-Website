@@ -380,7 +380,7 @@
 
       /* Ambient background glow that follows scroll & mouse */
       .ambient-glow {
-        position: absolute;
+        position: fixed;
         width: 1000px;
         height: 1000px;
         background: radial-gradient(circle, rgba(19, 141, 233, 0.04) 0%, transparent 70%);
@@ -389,6 +389,10 @@
         z-index: 0;
         filter: blur(100px);
         transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+        will-change: transform, left, top;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
       }
 
       /* Gradient variation for sections */
@@ -1857,6 +1861,13 @@
         gap: 32px;
       }
 
+      .pricing-card.centered {
+        grid-column: 1 / -1;
+        max-width: 620px;
+        margin: 0 auto;
+        justify-self: center;
+      }
+
       .pricing-card {
         padding: 48px 40px;
         border: 1px solid var(--border);
@@ -2655,16 +2666,6 @@
         <div class="reality-grid">
           <div class="pain-card fade-up stagger-1">
             <div class="pain-icon" style="font-size: 0; display: flex; align-items: center; justify-content: center;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/><path d="m22 4-8.5 8.5-5-5L2 14" stroke="var(--primary)" opacity="0.6"/></svg>
-            </div>
-            <h3 class="pain-title">Inconsistent Revenue</h3>
-            <p class="pain-description">
-              Your sales pipeline is unpredictable, making it impossible to plan for growth or scale your operations
-              effectively.
-            </p>
-          </div>
-          <div class="pain-card fade-up stagger-2">
-            <div class="pain-icon" style="font-size: 0; display: flex; align-items: center; justify-content: center;">
               <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/><path d="M12 2v2" opacity="0.5"/><path d="M12 20v2" opacity="0.5"/><path d="M2 12h2" opacity="0.5"/><path d="M20 12h2" opacity="0.5"/></svg>
             </div>
             <h3 class="pain-title">Time Drain</h3>
@@ -2673,14 +2674,24 @@
               thinking.
             </p>
           </div>
-          <div class="pain-card fade-up stagger-3">
+          <div class="pain-card fade-up stagger-2">
             <div class="pain-icon" style="font-size: 0; display: flex; align-items: center; justify-content: center;">
               <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5" opacity="0.6"/><path d="M2 12l10 5 10-5" opacity="0.8"/></svg>
             </div>
             <h3 class="pain-title">Scattered Marketing</h3>
             <p class="pain-description">
-              Your marketing efforts feel disconnected—no clear strategy, no measurable results, just money disappearing
-              into the void.
+              Many organizations find their marketing efforts spread across channels without a unifying
+              strategy—making it difficult to measure impact or clearly connect investment to results.
+            </p>
+          </div>
+          <div class="pain-card fade-up stagger-3">
+            <div class="pain-icon" style="font-size: 0; display: flex; align-items: center; justify-content: center;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/><path d="m22 4-8.5 8.5-5-5L2 14" stroke="var(--primary)" opacity="0.6"/></svg>
+            </div>
+            <h3 class="pain-title">Inconsistent Revenue</h3>
+            <pc lass="pain-description">
+              When growth signals are inconsistent, it becomes difficult to plan capital investments, allocate
+              operating resources, or align messaging with what customers actually need.
             </p>
           </div>
         </div>
@@ -2741,11 +2752,10 @@
           </div>
           <div class="service-card fade-up stagger-6">
             <div class="service-number">06</div>
-            <h3 class="service-title">Data Infrastructure, Security & IT Asset Disposition</h3>
+            <h3 class="service-title">IT Lifecycle Management Services</h3>
             <p class="service-description">
-              Deliver secure, scalable data infrastructure alongside IT Asset Disposition (ITAD) services via Balata
-              Data Partnership, including certified data destruction, hardware decommissioning, asset recovery, and
-              compliance reporting.
+              Reduce IT infrastructure spend through responsible asset disposition, hardware buybacks, refurbished
+              solutions, and right-sized services and maintenance contracts.
             </p>
           </div>
         </div>
@@ -3177,6 +3187,26 @@
             </ul>
             <a href="#contact" class="btn pricing-btn">
               Let's Talk
+              <span class="btn-arrow">→</span>
+            </a>
+          </div>
+          <div class="pricing-card fade-up stagger-4 centered">
+            <h3 class="pricing-name">Life Cycle Management Services</h3>
+            <div class="pricing-price">Pricing upon consultation</div>
+            <p class="pricing-description">
+              Secure, end-to-end IT lifecycle management optimizing deployment, maintenance, asset recovery,
+              compliance, and responsible disposition.
+            </p>
+            <ul class="pricing-features">
+              <li><span class="check-icon">✓</span> IT Asset Disposition (ITAD) & Buybacks</li>
+              <li><span class="check-icon">✓</span> Hardware Value Recovery</li>
+              <li><span class="check-icon">✓</span> Refurbished Hardware Solutions</li>
+              <li><span class="check-icon">✓</span> Infrastructure Cost Optimization</li>
+              <li><span class="check-icon">✓</span> Professional Services & Optimization</li>
+              <li><span class="check-icon">✓</span> Maintenance & Support Contract Alignment</li>
+            </ul>
+            <a href="#contact" class="btn pricing-btn">
+              Request Pricing
               <span class="btn-arrow">→</span>
             </a>
           </div>
