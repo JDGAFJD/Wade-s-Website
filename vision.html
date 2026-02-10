@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Vision | Verity Praxis</title>
+    <meta
+      name="description"
+      content="Verity Praxis vision: becoming the most trusted execution partner for organizations navigating complexity with clarity, systems alignment, and measurable outcomes."
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ===== CSS Reset & Base ===== */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        /* Dark theme colors (default) */
+        --background: #0f0f0f;
+        --foreground: #fafafa;
+        --muted: #1a1a1a;
+        --muted-foreground: #999999;
+        --border: #2e2e2e;
+
+        /* Dark section colors */
+        --dark-bg: #0f0f0f;
+        --dark-bg-elevated: #1a1a1a;
+        --dark-foreground: #fafafa;
+        --dark-muted: #999999;
+        --dark-border: #2e2e2e;
+
+        /* Brand accent */
+        --primary: #138DE9;
+        --primary-hover: #0e6fb8;
+        --primary-glow: rgba(19, 141, 233, 0.3);
+
+        /* Typography */
+        --font-serif: 'Playfair Display', Georgia, serif;
+        --font-sans: 'Inter', system-ui, sans-serif;
+
+        /* Spacing */
+        --section-padding: 120px;
+        --container-max: 1200px;
+      }
+
+      /* Light theme */
+      :root.light {
+        --background: #fafafa;
+        --foreground: #0f0f0f;
+        --muted: #f0f0f0;
+        --muted-foreground: #666666;
+        --border: #e0e0e0;
+
+        --dark-bg: #ffffff;
+        --dark-bg-elevated: #f5f5f5;
+        --dark-foreground: #0f0f0f;
+        --dark-muted: #666666;
+        --dark-border: #e0e0e0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        background-color: var(--background);
+        color: var(--foreground);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      /* ===== Container ===== */
+      .container {
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* ===== Section Base ===== */
+      .section {
+        padding: var(--section-padding) 0;
+      }
+
+      .section-dark {
+        background-color: var(--dark-bg);
+        color: var(--dark-foreground);
+      }
+
+      .section-dark-elevated {
+        background-color: var(--dark-bg-elevated);
+        color: var(--dark-foreground);
+      }
+
+      /* ===== Typography ===== */
+      h1, h2, h3, h4 {
+        font-family: var(--font-serif);
+        font-weight: 500;
+        line-height: 1.2;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 6vw, 4rem);
+      }
+
+      h2 {
+        font-size: clamp(36px, 4vw, 52px);
+      }
+
+      h3 {
+        font-size: 22px;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      p {
+        margin-bottom: 24px;
+      }
+
+      /* ===== Preloader ===== */
+      .preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--background);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+
+      .preloader::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse at 50% 50%, rgba(19, 141, 233, 0.1) 0%, transparent 70%);
+        animation: preloaderGlow 3s ease-in-out infinite;
+      }
+
+      .preloader.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .preloader-content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 48px;
+      }
+
+      .preloader-logo {
+        width: auto;
+        height: 240px;
+        margin-bottom: 24px;
+        animation: preloaderFloat 3s ease-in-out infinite, preloaderPulse 2s ease-in-out infinite;
+        filter: drop-shadow(0 0 40px rgba(19, 141, 233, 0.6)) drop-shadow(0 0 80px rgba(19, 141, 233, 0.3));
+        transition: transform 0.3s ease;
+      }
+
+      .preloader-bar-bg {
+        width: 300px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 2px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .preloader-bar {
+        height: 100%;
+        background: linear-gradient(90deg,
+            var(--primary) 0%,
+            #5cb8ff 50%,
+            var(--primary) 100%);
+        background-size: 200% 100%;
+        border-radius: 2px;
+        animation: preloaderProgress 1.5s ease-in-out infinite;
+        box-shadow: 0 0 20px rgba(19, 141, 233, 0.6);
+      }
+
+      @keyframes preloaderProgress {
+        0% {
+          width: 0%;
+          background-position: 0% 50%;
+        }
+        50% {
+          width: 100%;
+          background-position: 100% 50%;
+        }
+        100% {
+          width: 0%;
+          background-position: 0% 50%;
+        }
+      }
+
+      @keyframes preloaderGlow {
+        0%, 100% { opacity: 0.5; }
+        50% { opacity: 1; }
+      }
+
+      @keyframes preloaderFloat {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+      }
+
+      @keyframes preloaderPulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.8; }
+      }
+
+      /* ===== Header ===== */
+      .header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 100;
+        padding: 20px 0;
+        transition: all 0.3s ease;
+      }
+
+      .header.scrolled {
+        background: rgba(15, 15, 15, 0.8);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+        padding: 12px 0;
+      }
+
+      :root.light .header.scrolled {
+        background: rgba(250, 250, 250, 0.8);
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 20px;
+        font-weight: 600;
+        font-family: var(--font-serif);
+      }
+
+      .logo-icon {
+        width: 32px;
+        height: 32px;
+      }
+
+      .nav {
+        display: flex;
+        gap: 48px;
+        align-items: center;
+      }
+
+      .nav a {
+        font-size: 14px;
+        color: var(--dark-muted);
+        transition: color 0.3s ease;
+      }
+
+      .nav a:hover {
+        color: var(--dark-foreground);
+      }
+
+      .header-actions {
+        display: flex;
+        gap: 24px;
+        align-items: center;
+      }
+
+      .theme-toggle {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+        color: var(--dark-foreground);
+        transition: transform 0.3s ease;
+      }
+
+      .theme-toggle:hover {
+        transform: rotate(20deg);
+      }
+
+      .btn {
+        padding: 12px 24px;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .btn:hover {
+        background: var(--primary-hover);
+        transform: translateY(-2px);
+      }
+
+      /* ===== Hero Section ===== */
+      .hero-section {
+        padding-top: 180px;
+        padding-bottom: 120px;
+        position: relative;
+      }
+
+      .hero-content {
+        text-align: center;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .hero-title {
+        margin-bottom: 32px;
+        color: var(--dark-foreground);
+      }
+
+      .hero-subtitle {
+        font-size: 20px;
+        color: var(--dark-muted);
+        line-height: 1.8;
+        margin-bottom: 48px;
+      }
+
+      /* ===== Belief Cards Section ===== */
+      .beliefs-section {
+        position: relative;
+      }
+
+      .beliefs-section::before {
+        content: '';
+        position: absolute;
+        bottom: -200px;
+        right: -200px;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(19, 141, 233, 0.1) 0%, transparent 70%);
+        pointer-events: none;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 64px;
+      }
+
+      .beliefs-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+        margin-bottom: 80px;
+      }
+
+      .belief-card {
+        background: var(--dark-bg-elevated);
+        border: 1px solid var(--dark-border);
+        padding: 48px 32px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .belief-card:hover {
+        border-color: var(--primary);
+        transform: translateY(-12px);
+        box-shadow: 0 20px 40px rgba(19, 141, 233, 0.15);
+      }
+
+      .belief-icon {
+        font-size: 48px;
+        margin-bottom: 24px;
+      }
+
+      .belief-card h3 {
+        margin-bottom: 16px;
+        color: var(--dark-foreground);
+      }
+
+      .belief-card p {
+        font-size: 15px;
+        color: var(--dark-muted);
+        line-height: 1.8;
+      }
+
+      /* ===== Role Section ===== */
+      .role-section {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .role-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+
+      .role-text h2 {
+        margin-bottom: 32px;
+      }
+
+      .role-text p {
+        font-size: 16px;
+        color: var(--dark-muted);
+        line-height: 1.8;
+        margin-bottom: 24px;
+      }
+
+      .role-text p:last-child {
+        margin-bottom: 0;
+      }
+
+      .role-visual {
+        background: var(--dark-bg-elevated);
+        border: 1px solid var(--dark-border);
+        padding: 60px 40px;
+        border-radius: 8px;
+        text-align: center;
+      }
+
+      .role-visual-text {
+        font-size: 32px;
+        font-family: var(--font-serif);
+        font-weight: 500;
+        line-height: 1.6;
+        color: var(--primary);
+      }
+
+      /* ===== Versions Section ===== */
+      .versions-section {
+        position: relative;
+      }
+
+      .versions-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 48px;
+      }
+
+      .version-card {
+        background: var(--dark-bg-elevated);
+        border: 1px solid var(--dark-border);
+        padding: 48px 40px;
+        border-radius: 8px;
+      }
+
+      .version-label {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--primary);
+        margin-bottom: 16px;
+        font-weight: 600;
+      }
+
+      .version-card h3 {
+        margin-bottom: 24px;
+        font-size: 24px;
+      }
+
+      .version-card p {
+        font-size: 15px;
+        color: var(--dark-muted);
+        line-height: 1.8;
+      }
+
+      .version-card p:last-child {
+        margin-bottom: 0;
+      }
+
+      /* ===== CTA Section ===== */
+      .cta-section {
+        text-align: center;
+        padding: var(--section-padding) 0;
+      }
+
+      .cta-title {
+        font-size: 36px;
+        margin-bottom: 24px;
+      }
+
+      .cta-subtitle {
+        font-size: 18px;
+        color: var(--dark-muted);
+        margin-bottom: 48px;
+      }
+
+      .cta-button {
+        display: inline-flex;
+        gap: 8px;
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      /* ===== Footer ===== */
+      .footer {
+        background-color: var(--dark-bg);
+        color: var(--dark-foreground);
+        padding: 80px 0 40px;
+        border-top: 1px solid var(--dark-border);
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 48px;
+        margin-bottom: 64px;
+      }
+
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: var(--font-serif);
+        font-size: 24px;
+        margin-bottom: 16px;
+      }
+
+      .footer-brand-icon {
+        width: auto;
+        height: 40px;
+        object-fit: contain;
+      }
+
+      .footer-tagline {
+        font-size: 14px;
+        color: var(--dark-muted);
+        line-height: 1.8;
+        max-width: 320px;
+      }
+
+      .footer-title {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        margin-bottom: 24px;
+        color: var(--dark-muted);
+      }
+
+      .footer-links {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 14px;
+      }
+
+      .footer-links a {
+        font-size: 14px;
+        color: var(--dark-muted);
+        transition: color 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--dark-foreground);
+      }
+
+      .link-underline {
+        position: relative;
+        padding-bottom: 4px;
+        border-bottom: 1px solid var(--dark-muted);
+        transition: border-color 0.3s ease, color 0.3s ease;
+      }
+
+      .link-underline:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+      }
+
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 40px;
+        border-top: 1px solid var(--dark-border);
+      }
+
+      .footer-copyright {
+        font-size: 13px;
+        color: var(--dark-muted);
+      }
+
+      .footer-social {
+        display: flex;
+        gap: 24px;
+      }
+
+      .footer-social a {
+        color: var(--dark-muted);
+        transition: color 0.3s ease, transform 0.3s ease;
+      }
+
+      .footer-social a:hover {
+        color: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      /* ===== Animations ===== */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-up {
+        animation: fadeUp 0.6s ease-out forwards;
+        opacity: 0;
+      }
+
+      .stagger-1 { animation-delay: 0.1s; }
+      .stagger-2 { animation-delay: 0.2s; }
+      .stagger-3 { animation-delay: 0.3s; }
+
+      /* ===== Responsive Design ===== */
+      @media (max-width: 1024px) {
+        :root {
+          --section-padding: 80px;
+        }
+
+        .nav {
+          gap: 32px;
+        }
+
+        .beliefs-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .role-content {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+
+        .versions-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        :root {
+          --section-padding: 60px;
+        }
+
+        .header {
+          padding: 16px 0;
+        }
+
+        .hero-section {
+          padding-top: 120px;
+          padding-bottom: 60px;
+        }
+
+        .nav {
+          display: none;
+        }
+
+        .beliefs-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          gap: 24px;
+          text-align: center;
+        }
+
+        .footer-social {
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+      <div class="preloader-content">
+        <img src="assets/logo-vp.png" alt="Verity Praxis" class="preloader-logo" />
+        <div class="preloader-bar-bg">
+          <div class="preloader-bar"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">
+            <img src="assets/logo-vp-2.png" alt="Verity Praxis" class="logo-icon" />
+          </div>
+          <nav class="nav">
+            <a href="index.html#services">Services</a>
+            <a href="index.html#work">Work</a>
+            <a href="index.html#process">Process</a>
+            <a href="vision.html">Vision</a>
+            <a href="index.html#faq">FAQ</a>
+            <a href="index.html#contact">Contact</a>
+          </nav>
+          <div class="header-actions">
+            <button class="theme-toggle" id="themeToggle">🌙</button>
+            <a href="index.html#contact" class="btn">
+              Start Project
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Vision Statement Section -->
+    <section class="vision-statement-section section section-dark">
+      <div class="container">
+        <div class="vision-statement-content fade-up" style="max-width: 850px; margin: 0 auto; text-align: center;">
+          <h1 style="font-size: clamp(2rem, 6vw, 4rem); margin-bottom: 48px; color: var(--dark-foreground);">Vision Statement</h1>
+          
+          <p style="font-size: 18px; line-height: 1.8; margin-bottom: 32px; color: var(--dark-muted);">
+            Our vision is to become the most trusted execution partner for organizations navigating complexity—where clarity replaces noise, systems align with strategy, and principles are carried through to measurable outcomes.
+          </p>
+
+          <p style="font-size: 18px; line-height: 1.8; margin-bottom: 32px; color: var(--dark-muted);">
+            We believe the future belongs to companies that operate with truth, discipline, and intent. Verity Praxis exists to help leaders design systems that actually work, align teams around what matters, and turn sound strategy into consistent performance.
+          </p>
+
+          <p style="font-size: 18px; line-height: 1.8; margin-bottom: 32px; color: var(--dark-muted);">
+            We envision a business landscape where technology, data, and people operate as one coherent system—transparent, accountable, and built to scale responsibly. Our role is not to replace what exists, but to strengthen it: refining foundations, eliminating friction, and enabling sustainable growth with integrity.
+          </p>
+
+          <div style="background: var(--dark-bg-elevated); border: 1px solid var(--dark-border); padding: 40px; border-radius: 8px; margin-top: 48px;">
+            <p style="font-size: 28px; font-family: var(--font-serif); font-weight: 500; color: var(--primary); margin: 0;">Honest principles. Executed.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!-- Short Version Section -->
+    <section class="short-version-section section section-dark-elevated">
+      <div class="container">
+        <div class="section-title fade-up">
+          <h2>Short Version</h2>
+          <p style="font-size: 14px; color: var(--primary); margin-top: 16px; text-transform: uppercase; letter-spacing: 0.15em;">For Investors & Partners</p>
+        </div>
+        <div class="version-content fade-up" style="max-width: 700px; margin: 0 auto; background: var(--dark-bg); border: 1px solid var(--dark-border); padding: 48px 40px; border-radius: 8px;">
+          <p style="font-size: 18px; color: var(--dark-muted); line-height: 1.8; margin: 0;">
+            Verity Praxis is building the most trusted execution partner for companies navigating complexity by aligning strategy, systems, and data into repeatable performance.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Internal Vision Section Expanded -->
+    <section class="internal-vision-expanded-section section section-dark">
+      <div class="container">
+        <div class="section-title fade-up">
+          <h2>Internal Vision</h2>
+          <p style="font-size: 14px; color: var(--primary); margin-top: 16px; text-transform: uppercase; letter-spacing: 0.15em;">For Our Team</p>
+        </div>
+        <div class="internal-vision-expanded-content fade-up" style="max-width: 700px; margin: 0 auto; background: var(--dark-bg-elevated); border: 1px solid var(--dark-border); padding: 48px 40px; border-radius: 8px;">
+          <p style="font-size: 16px; color: var(--dark-muted); line-height: 1.8; margin-bottom: 24px;">
+            We exist to bring clarity where there is confusion and execution where there is friction. Our work aligns strategy, systems, and people so organizations operate with truth, discipline, and intent.
+          </p>
+          <p style="font-size: 16px; color: var(--dark-muted); line-height: 1.8; margin-bottom: 24px;">
+            We are not here to sell ideas—we are here to make them work. Every decision we make should strengthen foundations, reduce noise, and create measurable forward motion for our clients and for ourselves.
+          </p>
+          <p style="font-size: 16px; color: var(--dark-muted); line-height: 1.8; margin-bottom: 0;">
+            We build with integrity, execute with precision, and hold ourselves accountable to outcomes—not optics. If it doesn't drive clarity, alignment, or durable results, we don't do it.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section section section-dark">
+      <div class="container fade-up">
+        <h2 class="cta-title">Ready to Build with Clarity?</h2>
+        <p class="cta-subtitle">Let's discuss how we can help you align strategy, systems, and execution.</p>
+        <a href="index.html#contact" class="btn cta-button">
+          Book a Discovery Call
+          <span>→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer section-dark">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-brand">
+              <img src="assets/logo-vp-2.png" alt="Verity Praxis" class="footer-brand-icon" />
+            </div>
+            <p class="footer-tagline">
+              We align brand positioning, go-to-market strategy, marketing systems, automation, and secure data
+              foundations to help businesses scale with clarity and control.
+            </p>
+          </div>
+          <div>
+            <h4 class="footer-title">Services</h4>
+            <ul class="footer-links">
+              <li><a href="index.html#services">Brand Strategy</a></li>
+              <li><a href="index.html#services">Go-to-Market</a></li>
+              <li><a href="index.html#services">Marketing Systems</a></li>
+              <li><a href="index.html#services">Automation</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-title">Company</h4>
+            <ul class="footer-links">
+              <li><a href="index.html#work">Case Studies</a></li>
+              <li><a href="index.html#process">Our Process</a></li>
+              <li><a href="vision.html">Our Vision</a></li>
+              <li><a href="index.html#pricing">Pricing</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-title">Connect</h4>
+            <ul class="footer-links">
+              <li><a href="index.html#contact">Contact Us</a></li>
+              <li><a href="#">Facebook</a></li>
+              <li><a href="#">Twitter/X</a></li>
+              <li><a href="https://www.instagram.com/veritypraxisllc/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+              <li><a href="https://www.linkedin.com/company/verity-praxis-LLC" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p class="footer-copyright">© 2025 Verity Praxis. All rights reserved.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">Facebook</a>
+            <a href="#" aria-label="Twitter/X">Twitter/X</a>
+            <a href="https://www.instagram.com/veritypraxisllc/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+            <a href="https://www.linkedin.com/company/verity-praxis-LLC" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+      // Preloader
+      window.addEventListener('load', function () {
+        const preloader = document.getElementById('preloader');
+        setTimeout(() => {
+          preloader.classList.add('hidden');
+        }, 800);
+      });
+
+      document.addEventListener('DOMContentLoaded', function () {
+        // Header scroll effect
+        const header = document.getElementById('header');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+          const currentScroll = window.pageYOffset;
+          if (currentScroll > 50) {
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+          lastScroll = currentScroll;
+        });
+
+        // Intersection Observer for fade-up animations
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.animation = 'fadeUp 0.6s ease-out forwards';
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(el => {
+          observer.observe(el);
+        });
+
+        // Theme Toggle with Cookie Persistence
+        const themeToggle = document.getElementById('themeToggle');
+        const root = document.documentElement;
+        
+        function getCookie(name) {
+          const value = `; ${document.cookie}`;
+          const parts = value.split(`; ${name}=`);
+          if (parts.length === 2) return parts.pop().split(';').shift();
+          return null;
+        }
+        
+        function setCookie(name, value, days) {
+          const expires = new Date(Date.now() + days * 864e5).toUTCString();
+          document.cookie = `${name}=${value}; expires=${expires}; path=/; SameSite=Lax`;
+        }
+        
+        // Initialize theme from cookie
+        const savedTheme = getCookie('vp-theme');
+        if (savedTheme === 'light') {
+          root.classList.add('light');
+          themeToggle.textContent = '☀️';
+        }
+        
+        if (themeToggle) {
+          themeToggle.addEventListener('click', () => {
+            root.classList.toggle('light');
+            const isLight = root.classList.contains('light');
+            themeToggle.textContent = isLight ? '☀️' : '🌙';
+            setCookie('vp-theme', isLight ? 'light' : 'dark', 365);
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
